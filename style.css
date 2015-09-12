@@ -1,4 +1,31 @@
 body {
   color: black;
-  font-family: monospace;
+  font-family: roboto;
+  text-align: center;
+  margin: 50px;
+  padding: 5px;
+  border: 2px solid black;
+  overflow: scroll;
+}
+
+.site-title {
+  font-family: roboto;
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 50px;
+}
+
+.page-message {
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 50px;
+}
+
+.contact-info {
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 50px;
 }
