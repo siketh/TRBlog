@@ -10,7 +10,7 @@ body {
   padding: 5px;
   border: 2px solid black;
   overflow: auto;
-  float: right;
+  float: left;
 }
 
 .site-title {
