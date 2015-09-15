@@ -8,22 +8,25 @@ body {
   overflow: scroll;
 }
 
-.site-title {
-  font-family: roboto;
+.header {
   margin-top: 50px;
   margin-left: 100px;
   margin-right: 100px;
   margin-bottom: 50px;
 }
 
-.page-message {
+.content {
   margin-top: 50px;
   margin-left: 100px;
   margin-right: 100px;
   margin-bottom: 50px;
 }
 
-.contact-info {
+.white-space {
+  height: 150px;
+}
+
+.footer {
   margin-top: 50px;
   margin-left: 100px;
   margin-right: 100px;
