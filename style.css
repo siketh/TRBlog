@@ -5,14 +5,13 @@ body {
   margin: 50px;
   padding: 5px;
   border: 2px solid black;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .header {
-  margin-top: 50px;
+  margin-top: 25%;
   margin-left: 100px;
   margin-right: 100px;
-  margin-bottom: 50px;
 }
 
 .content {
@@ -22,8 +21,14 @@ body {
   margin-bottom: 50px;
 }
 
+.page-message {
+  text-align: justify;
+  margin: 0 auto;
+  width: 30em;
+}
+
 .white-space {
-  height: 150px;
+  height: 125px;
 }
 
 .footer {
