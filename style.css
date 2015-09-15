@@ -1,7 +1,3 @@
-* {
-   box-sizing: border-box;
-}
-
 body {
   color: black;
   font-family: roboto;
@@ -9,11 +5,11 @@ body {
   margin: 50px;
   padding: 5px;
   border: 2px solid black;
-  overflow: auto;
-  float: left;
+  overflow: scroll;
 }
 
 .site-title {
+  font-family: roboto;
   margin-top: 50px;
   margin-left: 100px;
   margin-right: 100px;
