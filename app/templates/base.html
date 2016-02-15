@@ -1,0 +1,35 @@
+<html>
+  
+  <head>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>trevorroman.com</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  </head>
+  
+  <body>
+    
+    <div class="navbar">
+      <a href="/about">About</a>
+      <a href="/blog">Blog</a>
+      <a href="mailto:trevor@trevorroman.com">Contact</a>
+      <a href="https://www.linkedin.com/in/trevorroman">Connect</a>
+      <a href="https://github.com/siketh">Code</a>
+      <a href="/static/documents/Resume.pdf">Resume</a>
+    </div>
+
+    <div class="header">
+    </div>
+    
+    <div class="content">
+    {% block content %}{% endblock %}
+    </div>
+    
+    <div class="footer">
+    </div>
+  </body>
+
+</html>
