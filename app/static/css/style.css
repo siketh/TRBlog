@@ -23,6 +23,7 @@ body, head{
 }
 
 .header {
+
 }
 
 .content {
@@ -31,10 +32,10 @@ body, head{
   align-items: center;
 }
 
-.about-me {
+.post {
 }
 
-.about-me p {
+.post-content p {
   text-align: justify;
   width: 30em;
 }
