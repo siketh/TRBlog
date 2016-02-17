@@ -6,9 +6,11 @@ body, head{
 }
 
 .navbar {
-  margin: 50px auto 50px auto;
-  padding-bottom: 5px;
+  margin: 25px auto 25px auto;
+  padding-bottom: 10px;
+  padding-top: 10px;
   border-bottom: solid white 1px;
+  border-top: solid white 1px;
   display: inline-block;
 }
 
@@ -23,6 +25,10 @@ body, head{
 }
 
 .header {
+
+}
+
+.header h1 {
 }
 
 .content {
@@ -31,12 +37,30 @@ body, head{
   align-items: center;
 }
 
-.about-me {
+.post {
+  width: 30em;
 }
 
-.about-me p {
+.post-title {
+}
+
+.post-abstract {
+  border-top: solid white 1px;
+  padding-top: 10px;
+  border-bottom: solid white 1px;
+  padding-bottom: 10px;
+}
+
+.post-content {
+  border-bottom: solid white 1px;
+  padding-bottom: 10px;
   text-align: justify;
-  width: 30em;
+  word-wrap: break-word;
+  margin: 0px auto 0px auto;
+}
+
+.post-content ol, ul {
+  padding-right: 40px;
 }
 
 .footer {
