@@ -1,4 +1,8 @@
 #!flask/bin/python
+
+# This code is authored by Miguel Grinberg as part of his Flask Mega Tutorial:
+# http://blog.miguelgrinberg.com/index
+
 from migrate.versioning import api
 from config import SQLALCHEMY_DATABASE_URI
 from config import SQLALCHEMY_MIGRATE_REPO

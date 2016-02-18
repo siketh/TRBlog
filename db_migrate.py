@@ -1,4 +1,8 @@
 #!flask/bin/python
+
+# This code is authored by Miguel Grinberg as part of his Flask Mega Tutorial:
+# http://blog.miguelgrinberg.com/index
+
 import imp
 from migrate.versioning import api
 from app import db
