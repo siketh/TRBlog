@@ -38,6 +38,6 @@ Thumbs.db
 
 # trevorroman.com related #
 ###########################
-__pycache__
-flask
-tmp
+__pycache__/
+flask/
+tmp/
