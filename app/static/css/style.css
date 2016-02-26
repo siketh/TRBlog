@@ -9,8 +9,8 @@ body, head{
   margin: 25px auto 25px auto;
   padding-bottom: 10px;
   padding-top: 10px;
-  border-bottom: solid white 1px;
-  border-top: solid white 1px;
+  border-bottom: solid white 2px;
+  border-top: solid white 2px;
   display: inline-block;
 }
 
@@ -38,21 +38,21 @@ body, head{
 }
 
 .post {
-  width: 30em;
+  width: 50%;
 }
 
 .post-title {
 }
 
 .post-abstract {
-  border-top: solid white 1px;
+  border-top: solid white 2px;
   padding-top: 10px;
-  border-bottom: solid white 1px;
+  border-bottom: solid white 2px;
   padding-bottom: 10px;
 }
 
 .post-content {
-  border-bottom: solid white 1px;
+  border-bottom: solid white 2px;
   padding-bottom: 10px;
   text-align: justify;
   word-wrap: break-word;
@@ -64,4 +64,5 @@ body, head{
 }
 
 .footer {
+  font-size: 12px;
 }
