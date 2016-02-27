@@ -1,19 +1,49 @@
 
 {% extends "base.html" %}
 {% block content %}
-<div class="post">
-	
+
+{% for post in posts %}
+<div class="post-container">
 	<div class="post-title">
-		<h2>{{ title }}</h2>
+		{% if post.title %}
+		<h2>{{ post.title }}</h2>
+		{% else %}
+		<p>Error</p>
+		{% endif %}
 	</div>
 
 	<div class="post-abstract">
-		<h3>{{ abstract }}</h3>
+		{% if post.abstract %}
+		<h3>{{ post.abstract }}</h3>
+		{% else %}
+		<p>Error</p>
+		{% endif %}
 	</div>
 
-	<div class="post-content">
-		<p>{{ body }}</p>
+	<div class="post-body">
+		{% if post.body %}
+		<p>{{ post.body }}</p>
+		{% else %}
+		<p>No content is available, please report this to the site admin: trevor@trevorroman.com</p>
+		{% endif %}
 	</div>
-
 </div>
+{% endfor %}
+
+{% if posts.count() == 0 %}
+<div class="post-container">
+	<div class="post-title">
+		<h2>Error</h2>
+	</div>
+
+	<div class="post-abstract">
+		<h3>Error</h3>
+	</div>
+
+	<div class="post-body">
+		<p>No content is available, please report this to the site admin: trevor@trevorroman.com</p>
+	</div>
+</div>
+{% endif %}
+
 {% endblock %}

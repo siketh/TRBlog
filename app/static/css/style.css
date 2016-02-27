@@ -1,4 +1,4 @@
-body, head{
+body {
   background: black;
   color: white;
   font-family: roboto;
@@ -6,12 +6,11 @@ body, head{
 }
 
 .navbar {
-  margin: 25px auto 25px auto;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  border-bottom: solid white 2px;
-  border-top: solid white 2px;
   display: inline-block;
+  margin: 25px auto 25px auto;
+  padding: 10px 0px 10px 0px;
+  border-top: solid white 2px;
+  border-bottom: solid white 2px;
 }
 
 .navbar a {
@@ -24,43 +23,30 @@ body, head{
   color: gray;
 }
 
-.header {
-
-}
-
-.header h1 {
-}
-
 .content {
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.post {
+.post-container {
   width: 50%;
+  margin: 0px auto 0px auto;
 }
 
 .post-title {
 }
 
 .post-abstract {
+  padding: 10px 0px 10px 0px;
   border-top: solid white 2px;
-  padding-top: 10px;
   border-bottom: solid white 2px;
-  padding-bottom: 10px;
 }
 
-.post-content {
-  border-bottom: solid white 2px;
-  padding-bottom: 10px;
+.post-body {
   text-align: justify;
   word-wrap: break-word;
+  border-bottom: solid white 2px;
   margin: 0px auto 0px auto;
-}
-
-.post-content ol, ul {
-  padding-right: 40px;
+  padding: 0px 0px 10px 0px;
 }
 
 .footer {

@@ -6,39 +6,29 @@ from datetime import date
 @app.route('/index')
 @app.route('/about')
 @app.route('/')
-
-# Output this content to the screen for mapped URLs
 def about():
-	post = models.Post.query.filter_by(title='About Me').first()
-	title = post.title
-	abstract = post.abstract
-	body = post.body
-	author = post.author
+	posts = models.Post.query.filter_by(title='About Me')
 	year = date.today().year
 
-	# Invokes Jinja2 templating engine, part of Flask framework
-	return render_template('post.html', title=title, abstract=abstract, body=body, author=author, year=year)
+	return render_template('post.html', posts=posts, year=year)
+
+@app.route('/contact')
+def contact():
+	posts = models.Post.query.filter_by(title='Contact')
+	year = date.today().year
+
+	return render_template('post.html', posts=posts, year=year)
 
 @app.route('/blog')
 def blog():
-	post = models.Post.query.filter_by(title='Under Construction').first()
-	title = post.title
-	abstract = post.abstract
-	body = post.body
-	author = post.author
+	posts = models.Post.query.filter(models.Post.title != 'Under Construction').filter(models.Post.title != 'About Me')
 	year = date.today().year
 
-	# Invokes Jinja2 templating engine, part of Flask framework
-	return render_template('post.html', title=title, abstract=abstract, body=body, author=author, year=year)
+	return render_template('post.html', posts=posts, year=year)
 
 @app.route('/example')
 def example():
 	post = models.Post.query.filter_by(title='About Me').first()
-	title = post.title
-	abstract = post.abstract
-	body = post.body
-	author = post.author
 	year = date.today().year
 
-	# Invokes Jinja2 templating engine, part of Flask framework
-	return render_template('eaxmple_post.html', title=title, abstract=abstract, body=body, author=author, year=year)
+	return render_template('eaxmple_post.html', posts=posts, year=year)

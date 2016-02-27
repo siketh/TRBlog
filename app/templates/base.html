@@ -1,27 +1,19 @@
+<!DOCTYPE html>
 <html>
-  
   <head>
-    {% if title %}
-    <title>{{ title }}</title>
-    {% else %}
     <title>trevorroman.com</title>
-    {% endif %}
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
   </head>
   
   <body>
-    
     <div class="navbar">
       <a href="/about">About</a>
       <a href="/blog">Blog</a>
-      <a href="mailto:trevor@trevorroman.com">Contact</a>
+      <a href="/contact">Contact</a>
       <a href="https://www.linkedin.com/in/trevorroman" target="_blank">Connect</a>
       <a href="https://github.com/siketh" target="_blank">Code</a>
       <a href="/static/documents/Resume.pdf" target="_blank">Resume</a>
-    </div>
-
-    <div class="header">
     </div>
     
     <div class="content">
@@ -32,5 +24,4 @@
       <p>&copy; 2015 - {{ year }}</p>
     </div>
   </body>
-
 </html>
