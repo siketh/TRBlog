@@ -49,6 +49,10 @@ body {
   padding: 0px 0px 10px 0px;
 }
 
+.post-body * {
+  
+}
+
 .footer {
   font-size: 12px;
 }
