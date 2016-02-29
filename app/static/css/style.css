@@ -30,6 +30,9 @@ body {
 .post-container {
   width: 50%;
   margin: 0px auto 0px auto;
+  padding: 10px;
+  border: solid white 2px;
+  border-radius: 10px;
 }
 
 .post-title {
@@ -44,7 +47,6 @@ body {
 .post-body {
   text-align: justify;
   word-wrap: break-word;
-  border-bottom: solid white 2px;
   margin: 0px auto 0px auto;
   padding: 0px 0px 10px 0px;
 }

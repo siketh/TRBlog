@@ -18,6 +18,7 @@ class Post(db.Model):
     abstract = db.Column(db.String(1000))
     body = db.Column(db.String(10000))
     timestamp = db.Column(db.DateTime)
+    repo_url = db.Column(db.String(200))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
