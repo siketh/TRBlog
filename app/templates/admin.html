@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>admin - trevorroman.com</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/admin.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  </head>
+  
+  <body>    
+    <div class="admin-form-container">
+      <div class="flash-messages">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+          {% for message in messages %}
+              <li>{{ message }} </li>
+          {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+      </div>
+      <form action="" method="post" name="new-post">
+        {{ form.hidden_tag() }}
+        
+        <h1>Title</h1>
+        <p class="admin-form-title">{{ form.title }}</p>
+        
+        <h1>Abstract</h1>
+        <p class="admin-form-abstract">{{ form.abstract }}</p>
+
+        <h1>Body</h1>
+        <p class="admin-form-body">{{ form.body }}</p>
+
+        <h1>Repo URL</h1>
+        <p class="admin-form-repo">{{ form.repo_url }}</p>
+
+        <input class="admin-form-submit" type="submit" value="Submit Post">
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,6 +1,5 @@
 body {
-  background: black;
-  color: white;
+  color: #1a1a1a;
   font-family: roboto;
   text-align: center;
 }
@@ -9,13 +8,13 @@ body {
   display: inline-block;
   margin: 25px auto 25px auto;
   padding: 10px 0px 10px 0px;
-  border-top: solid white 2px;
-  border-bottom: solid white 2px;
+  border-top: solid #1a1a1a 2px;
+  border-bottom: solid #1a1a1a 2px;
 }
 
 .navbar a {
   text-decoration: none;
-  color: white;
+  color: #1a1a1a;
   margin: 0px 2px 0px 2px;
 }
 
@@ -30,25 +29,18 @@ body {
 .post-container {
   width: 50%;
   margin: 0px auto 0px auto;
-  padding: 10px;
-  border: solid white 2px;
-  border-radius: 10px;
 }
 
 .post-title {
 }
 
 .post-abstract {
-  padding: 10px 0px 10px 0px;
-  border-top: solid white 2px;
-  border-bottom: solid white 2px;
 }
 
 .post-body {
   text-align: justify;
   word-wrap: break-word;
   margin: 0px auto 0px auto;
-  padding: 0px 0px 10px 0px;
 }
 
 .post-body * {
