@@ -17,7 +17,8 @@ class Post(db.Model):
     title = db.Column(db.String(100))
     abstract = db.Column(db.String(1000))
     body = db.Column(db.String(10000))
-    timestamp = db.Column(db.DateTime)
+    created = db.Column(db.DateTime)
+    updated = db.Column(db.DateTime)
     repo_url = db.Column(db.String(200))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
