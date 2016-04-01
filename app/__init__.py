@@ -8,6 +8,7 @@ from config import basedir, SQLALCHEMY_DATABASE_URI
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 # Initialize flask application
 app = Flask(__name__)
@@ -18,6 +19,7 @@ app.config.from_object('config')
 # Initialize database
 db = SQLAlchemy(app)
 engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
+Session = sessionmaker(bind=engine)
 
 # Create empty admin interface
 admin = Admin(app, name='trevorroman.com', template_mode='bootstrap3')
