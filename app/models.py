@@ -1,27 +1,26 @@
 from app import db
-from sqlalchemy import Table, Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 
 Base = declarative_base()
 
-post_tag_table = Table('post_tag_table', Base.metadata,
-    Column('post_id', Integer, ForeignKey('post.id')),
-    Column('tag_id', Integer, ForeignKey('tag.id'))
+post_tag_table = db.Table('post_tag_table', Base.metadata,
+    db.Column('post_id', db.Integer, db.ForeignKey('post.id')),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'))
 )
 
-post_user_table = Table('post_user_table', Base.metadata,
-    Column('post_id', Integer, ForeignKey('post.id')),
-    Column('user_id', Integer, ForeignKey('user.id')))
+post_user_table = db.Table('post_user_table', Base.metadata,
+    db.Column('post_id', db.Integer, db.ForeignKey('post.id')),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')))
 
 class Post(Base):
     __tablename__ = 'post'
     
-    id = Column(Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     abstract = db.Column(db.String(1000))
-    body = db.Column(db.String(10000))
+    body = db.Column(db.Text)
     created = db.Column(db.DateTime)
     updated = db.Column(db.DateTime)
     repo_url = db.Column(db.String(200))
@@ -74,7 +73,7 @@ class User(Base):
 class Tag(Base):
     __tablename__ = 'tag'
     
-    id = Column(Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=True)
 
     posts = relationship(
