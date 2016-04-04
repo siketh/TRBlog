@@ -1,52 +1,66 @@
+h2, h3, h4 {
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 1200px) {
+    .container{
+        max-width: 750px;
+    }
+}
+
 body {
-  color: #1a1a1a;
-  font-family: roboto;
-  text-align: center;
+  background-color: #114B5F;
+  font-family: 'Roboto Slab';
 }
 
 .navbar {
-  display: inline-block;
-  margin: 25px auto 25px auto;
-  padding: 10px 0px 10px 0px;
-  border-top: solid #1a1a1a 2px;
-  border-bottom: solid #1a1a1a 2px;
+  margin-top: 15px;
 }
 
 .navbar a {
-  text-decoration: none;
-  color: #1a1a1a;
-  margin: 0px 2px 0px 2px;
+  color: #000000;
+  font-size: 18px;
 }
 
-.navbar a:hover {
-  color: gray;
+.navbar .nav {
+  text-align: center;
+  background-color: #fdfdfd;
 }
 
-.content {
-  display: flex;
+.navbar .nav > li {  
+  text-align: center;
+  display: inline-block;
+  width: 100px;
 }
 
-.post-container {
-  width: 50%;
-  margin: 0px auto 0px auto;
+.container {
+}
+
+.post {
+  background-color: #fdfdfd;
+  text-align: left;
+  padding: 25px;
+  margin-bottom: 25px;
 }
 
 .post-title {
+  margin-bottom: 25px;
 }
 
 .post-abstract {
+  margin-bottom: 25px;
 }
 
 .post-body {
-  text-align: justify;
-  word-wrap: break-word;
-  margin: 0px auto 0px auto;
-}
-
-.post-body * {
-  
+  font-size: 18px;
 }
 
 .footer {
+  text-align: center;
+  background-color: #fdfdfd;
+  margin-bottom: 25px;
+  padding: 5px;
   font-size: 12px;
+  font-weight: lighter;
 }

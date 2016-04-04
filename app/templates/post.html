@@ -3,8 +3,8 @@
 {% block content %}
 
 {% for post in posts %}
-<div class="post-container">
-	<div class="post-title">
+<div id="post-{{loop.index}}" class="post">
+	<div id="post-title-{{loop.index}}" class="post-title">
 		{% if post.title %}
 		<h2>{{ post.title }}</h2>
 		{% else %}
@@ -12,7 +12,7 @@
 		{% endif %}
 	</div>
 
-	<div class="post-abstract">
+	<div id="post-abstract-{{loop.index}}" class="post-abstract">
 		{% if post.abstract %}
 		<h3>{{ post.abstract }}</h3>
 		{% else %}
@@ -20,9 +20,9 @@
 		{% endif %}
 	</div>
 
-	<div class="post-body">
+	<div id="post-body-{{loop.index}}" class="post-body">
 		{% if post.body %}
-		<p>{{ post.body }}</p>
+		{{post.body|markdown}}
 		{% else %}
 		<p>No content is available, please report this to the site admin: trevor@trevorroman.com</p>
 		{% endif %}
@@ -31,17 +31,17 @@
 {% endfor %}
 
 {% if posts.count() == 0 %}
-<div class="post-container">
-	<div class="post-title">
-		<h2>Error: No Title</h2>
+<div id="post-0" class="post">
+	<div id="post-title-0" class="post-title">
+		<h2>Page not found.</h2>
 	</div>
 
-	<div class="post-abstract">
-		<h3>Error: No Abstract</h3>
+	<div id="post-abstract-0" class="post-abstract">
+		<h3>This page is either under construction or has been removed.</h3>
 	</div>
 
-	<div class="post-body">
-		<p>No content is available, please report this to the site admin: trevor@trevorroman.com</p>
+	<div id="post-body-0" class="post-body">
+		<p>If you have any qustions please feel free to contact me: trevor@trevorroman.com</p>
 	</div>
 </div>
 {% endif %}
