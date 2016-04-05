@@ -1,6 +1,6 @@
-h2, h3, h4 {
-  padding: 0;
-  margin: 0;
+h1, h2, h3, h4, h5, h6 {
+  margin: 0px !important;
+  padding: 0px !important;
 }
 
 @media (min-width: 1200px) {
@@ -12,29 +12,37 @@ h2, h3, h4 {
 body {
   background-color: #114B5F;
   font-family: 'Roboto Slab';
+  font-size: 16px;
 }
 
 .navbar {
-  margin-top: 15px;
-}
-
-.navbar a {
-  color: #000000;
-  font-size: 18px;
-}
-
-.navbar .nav {
-  text-align: center;
+  border-radius: 0px;
+  margin-top: 25px;
   background-color: #fdfdfd;
+  box-shadow: 3px 3px 3px #111111;
 }
 
-.navbar .nav > li {  
-  text-align: center;
-  display: inline-block;
-  width: 100px;
+.navbar-brand,
+.navbar-brand:hover {
+  color: #000000 !important;
+  float: left;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 20px;
 }
 
-.container {
+.navbar-default .navbar-nav > li>  a {
+  color: #000000;
+}
+
+#internal-links {
+  float: left;
+  font-size: 20px;
+}
+
+#external-links {
+  float: right;
+  font-size: 20px;
 }
 
 .post {
@@ -42,18 +50,22 @@ body {
   text-align: left;
   padding: 25px;
   margin-bottom: 25px;
+  box-shadow: 3px 3px 3px #111111;
 }
 
 .post-title {
   margin-bottom: 25px;
+  color: #000000;
 }
 
 .post-abstract {
   margin-bottom: 25px;
+  color: #000000;
 }
 
 .post-body {
-  font-size: 18px;
+  font-size: 16px;
+  color: #000000;
 }
 
 .footer {
@@ -63,4 +75,5 @@ body {
   padding: 5px;
   font-size: 12px;
   font-weight: lighter;
+  box-shadow: 3px 3px 3px #111111;
 }

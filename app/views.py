@@ -1,6 +1,19 @@
-from flask import render_template
+from flask import render_template, redirect, url_for
 from app import app, models, Session
 from datetime import date
+
+@app.route('/')
+@app.route('/index')
+def index():
+	return redirect(url_for('blog'))
+
+@app.route('/blog')
+def blog():
+	session = Session()
+	posts = session.query(models.Post).filter(~models.Post.tags.any(models.Tag.name.in_(['About', 'Contact']))).order_by(models.Post.updated)
+	year = date.today().year
+
+	return render_template('post.html', posts=posts, year=year)
 
 @app.route('/about')
 def about():
@@ -14,14 +27,6 @@ def about():
 def contact():
 	session = Session()
 	posts = session.query(models.Post).filter(models.Post.tags.any(models.Tag.name.in_(['Contact'])))
-	year = date.today().year
-
-	return render_template('post.html', posts=posts, year=year)
-
-@app.route('/blog')
-def blog():
-	session = Session()
-	posts = session.query(models.Post).filter(~models.Post.tags.any(models.Tag.name.in_(['About', 'Contact']))).order_by(models.Post.updated)
 	year = date.today().year
 
 	return render_template('post.html', posts=posts, year=year)
