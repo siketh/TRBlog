@@ -27,6 +27,22 @@
 		<p>Error: No content is available, please report this to the site admin: trevor@trevorroman.com</p>
 		{% endif %}
 	</div>
+
+	<div id="post-info-{{loop.index}}" class="post-info">
+		<div id="post-date-{{loop.index}}" class="post-date">
+			{% if post.updated %}
+			<span>{{post.updated.strftime("%B %d, %Y")}}</span>
+			{% else %}
+			<p>Error: No Date</p>
+			{% endif %}
+		</div>
+
+		<div id="post-repo-{{loop.index}}" class="post-repo">
+			{% if post.repo_url %}
+			<a href="{{post.repo_url}}" target="_blank"><i class="fa fa-code-fork"></i></a>
+			{% endif %}
+		</div>
+	</div>
 </div>
 {% endfor %}
 

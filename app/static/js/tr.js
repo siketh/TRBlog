@@ -1,4 +1,4 @@
 
 $(window).load(function() {
-	//$('.post-body').hide();
+	$('.post-body').hide();
 });
