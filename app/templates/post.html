@@ -6,7 +6,7 @@
 <div id="post-{{loop.index}}" class="post">
 	<div id="post-title-{{loop.index}}" class="post-title">
 		{% if post.title %}
-		<h2>{{ post.title }}</h2>
+		<a href="{{ url_for(page, post_id=post.id) }}"><h2>{{ post.title }}</h2></a>
 		{% else %}
 		<p>Error: No Title</p>
 		{% endif %}

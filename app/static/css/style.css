@@ -78,6 +78,7 @@ body {
   margin-top: 25px;
   padding-bottom: 15px;
   border-bottom: solid gray 2px;
+  display: none;
 }
 
 .post-date span {

@@ -10,15 +10,23 @@ def index():
 
 @app.route('/blog')
 @app.route('/blog/<int:page_index>')
-def blog(page_index=1):
-	posts = models.Post.query \
-		.filter(~models.Post.tags.any(models.Tag.name.in_(['About', 'Contact']))) \
-		.order_by(models.Post.updated.desc()) \
-		.paginate(page_index, POSTS_PER_PAGE, False)
-
+@app.route('/blog/post/<int:post_id>')
+def blog(page_index=1, post_id=None):
 	year = date.today().year
 
-	return render_template('post.html', page='blog', posts=posts, year=year)
+	if post_id is not None:
+		post = models.Post.query.filter_by(id=post_id) \
+			.paginate(page_index, POSTS_PER_PAGE, False)
+		
+		return render_template('post.html', page='blog', posts=post, year=year)
+
+	else:
+		posts = models.Post.query \
+			.filter(~models.Post.tags.any(models.Tag.name.in_(['About', 'Contact']))) \
+			.order_by(models.Post.updated.desc()) \
+			.paginate(page_index, POSTS_PER_PAGE, False)
+
+		return render_template('post.html', page='blog', posts=posts, year=year)
 
 @app.route('/about')
 @app.route('/about/<int:page_index>')
