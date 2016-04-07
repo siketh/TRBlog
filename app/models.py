@@ -1,20 +1,18 @@
 from app import db
 from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 
-Base = declarative_base()
 
-post_tag_table = db.Table('post_tag_table', Base.metadata,
+post_tag_table = db.Table('post_tag_table',
     db.Column('post_id', db.Integer, db.ForeignKey('post.id')),
     db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'))
 )
 
-post_user_table = db.Table('post_user_table', Base.metadata,
+post_user_table = db.Table('post_user_table',
     db.Column('post_id', db.Integer, db.ForeignKey('post.id')),
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')))
 
-class Post(Base):
+class Post(db.Model):
     __tablename__ = 'post'
     
     id = db.Column(db.Integer, primary_key=True)
@@ -44,7 +42,7 @@ class Post(Base):
     def __repr__(self):
         return '<Post Title %r>' % (self.title)
 
-class User(Base):
+class User(db.Model):
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -70,7 +68,7 @@ class User(Base):
     def __repr__(self):
         return '<User Name %r>' % (self.full_name)
 
-class Tag(Base):
+class Tag(db.Model):
     __tablename__ = 'tag'
     
     id = db.Column(db.Integer, primary_key=True)
