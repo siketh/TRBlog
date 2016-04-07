@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% for post in posts %}
+{% for post in posts.items %}
 <div id="post-{{loop.index}}" class="post">
 	<div id="post-title-{{loop.index}}" class="post-title">
 		{% if post.title %}
@@ -46,7 +46,21 @@
 </div>
 {% endfor %}
 
-{% if posts.count() == 0 %}
+{% if posts.has_prev or posts.has_next %}
+<div class="post-navigate">
+	<div class="container-fluid">
+		{% if posts.has_prev %}
+		<a class="newer-posts-button" href="{{ url_for(page, page_index=posts.prev_num) }}">Newer</i></a>
+		{% endif %}
+
+		{% if posts.has_next %}
+		<a class="older-posts-button" href="{{ url_for(page, page_index=posts.next_num) }}">Older</a>
+		{% endif %}
+	</div>
+</div>
+{% endif %}
+
+{% if posts.items.len == 0 %}
 <div id="post-0" class="post">
 	<div id="post-title-0" class="post-title">
 		<h2>Page not found.</h2>

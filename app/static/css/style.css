@@ -33,6 +33,10 @@ body {
   color: #000000;
 }
 
+.navbar-default .navbar-nav > li>  a:hover {
+  text-decoration: underline;
+}
+
 #internal-links {
   float: left;
   font-size: 20px;
@@ -57,13 +61,18 @@ body {
 }
 
 .post-abstract {
-  margin-bottom: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-bottom: 10px;
   color: #000000;
+  border-top: solid gray 2px;
+  border-bottom: solid gray 2px;
 }
 
 .post-body {
   font-size: 16px;
   color: #000000;
+  display: none;
 }
 
 .post-date span {
@@ -80,6 +89,23 @@ body {
 
 .post-info {
   height: 16px;
+}
+
+.post-navigate {
+  background-color: #fdfdfd;
+  padding: 10px;
+  margin-bottom: 25px;
+  box-shadow: 3px 3px 3px #111111;
+}
+
+.newer-posts-button {
+  float: left;
+  color: #000000;
+}
+
+.older-posts-button {
+  float: right;
+  color: #000000;
 }
 
 .footer {
