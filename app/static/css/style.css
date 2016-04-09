@@ -81,6 +81,11 @@ body {
   display: none;
 }
 
+.post-info {
+  height: 16px;
+  margin-top: 10px;
+}
+
 .post-date span {
   color: #000000;
   font-size: 16px;
@@ -93,9 +98,16 @@ body {
   float: right;
 }
 
-.post-info {
-  height: 16px;
-  margin-top: 10px;
+.show-comments-button {
+  color: #000000;
+  display: none;
+  float: right;
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.post-comments {
+  display: none;
 }
 
 .post-navigate {
