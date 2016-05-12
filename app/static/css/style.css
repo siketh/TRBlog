@@ -1,22 +1,23 @@
 @media (min-width: 1200px) {
     .container{
-        max-width: 750px;
+        max-width: 800px;
     }
 }
 
 body {
-  --color-primary-1: #2E86AB;
-  --color-primary-2: #FDFDFD;
-  --color-secondary-1:;
-  --color-shadow: #111111;
-  --color-text: #000000;
+  --color-primary-1: #f2f2f2;
+  --color-primary-2: #FFFFFF;
+  --color-secondary-1: #34495e;
+  --color-shadow: #16BAC5;
+  --color-text-1: #000000;
+  --color-text-2: #FFFFFF;
   --color-separator: #16BAC5;
   --font-xlarge: 20px;
   --font-large: 18px;
   --font-normal: 16px;
   --font-small: 14px;
   --font-xsmall: 12px;
-  background-color: #2E86AB;
+  background-color: var(--color-primary-1);
   font-family: 'Roboto';
   font-size: var(--font-normal);
 }
@@ -41,23 +42,25 @@ h5 {
   font-size: var(--font-xsmall);
 }
 
+#main-container {
+}
+
 /** NAVIGATION **/
 
 .navbar-default {
   border-radius: 0px;
-  margin-top: 25px;
-  padding: 10px;
+  padding: 5px 10px 5px 10px;
   border: none;
-  background-color: var(--color-primary-2);
-  color: var(--color-text);
+  background-color: var(--color-secondary-1);
   box-shadow: 0px 4px 4px var(--color-shadow);
+  color: var(--color-text-2);
 }
 
 .navbar-header > .navbar-brand,
 .navbar-header > .navbar-brand:hover,
 .navbar-default .navbar-nav > li >  a, 
 .navbar-default .navbar-nav > li >  a:hover {
-  color: var(--color-text);
+  color: var(--color-text-2);
   font-size: var(--font-large);
 }
 
@@ -83,6 +86,10 @@ h5 {
 
 /** BLOG POSTS **/
 
+#posts-container {
+  margin-top: 85px;
+}
+
 .post {
   padding: 25px;
   margin-bottom: 25px;
@@ -98,11 +105,11 @@ h5 {
 
 .post-title a,
 .post-title a:hover {
-  color: var(--color-text);
+  color: var(--color-text-1);
 }
 
 .post-abstract {
-  color: var(--color-text);
+  color: var(--color-text-1);
   font-weight: lighter;
   font-size: var(--font-large);
   padding-top: 25px;
@@ -113,14 +120,14 @@ h5 {
 
 .post-title p,
 .post-abstract p {
-  color: var(--color-text);
+  color: var(--color-text-1);
   margin: 0px !important;
   padding: 0px !important;
 }
 
 .post-body {
   font-weight: lighter;
-  color: var(--color-text);
+  color: var(--color-text-1);
   margin-top: 25px;
   padding-bottom: 15px;
   border-bottom: solid var(--color-separator) 2px;
@@ -137,21 +144,21 @@ h5 {
   float: left;
   font-weight: lighter;
   font-size: var(--font-small);
-  color: var(--color-text);
+  color: var(--color-text-1);
 }
 
 .post-repo a {
   float: right;
   font-weight: bold;
   font-size: var(--font-large);
-  color: var(--color-text);
+  color: var(--color-text-1);
 }
 
 .show-comments-button {
   display: none;
   float: right;
   margin-left: 10px;
-  color: var(--color-text);
+  color: var(--color-text-1);
   font-size: var(--font-large);
 }
 
@@ -167,18 +174,18 @@ h5 {
 .post-navigate {
   background-color: var(--color-primary-2);
   padding: 10px;
-  margin-bottom: 25px;
   box-shadow: 0px 4px 4px var(--color-shadow);
+  margin-bottom: 25px;
 }
 
 .newer-posts-button {
   float: left;
-  color: var(--color-text);
+  color: var(--color-text-1);
 }
 
 .older-posts-button {
   float: right;
-  color: var(--color-text);
+  color: var(--color-text-1);
 }
 
 .footer {

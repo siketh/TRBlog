@@ -15,8 +15,9 @@
   </head>
   
   <body>
-      <div class="container">
-        <nav class="navbar navbar-default">
+    <div id="main-container" class="container">
+      <div id="navbar-container">
+        <nav class="navbar navbar-default navbar-fixed-top">
           <div class="container-fluid">
             <div class="navbar-header">
               <a class="navbar-brand">Trevor Roman</a>
@@ -38,14 +39,15 @@
         </nav>
       </div>
     
-      <div id="posts-container" class="container">
+      <div id="posts-container">
       {% block content %}{% endblock %}
       </div>
       
-      <div class="container">
+      <div id="footer-container">
         <div class="footer">
           <span>2015 - {{ year }}</span>
         </div>
       </div>
+    </div>
   </body>
 </html>
