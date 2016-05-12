@@ -23,13 +23,13 @@ thoughts; persoal, and professional.
 6. Simple and secure admin page
 
 ##SETUP (LINUX):
-'''
+```
 python3 -m venv flask
 flask/bin/pip install flask
 flask/bin/pip install flask-sqlalchemy
 flask/bin/pip install flask-admin
 flask/bin/pip install flask-markdown
 ./run.py
-'''
+```
 
 ###Thank you for your interest, I welcome any and all feedback or advice.
