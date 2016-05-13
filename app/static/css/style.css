@@ -1,8 +1,10 @@
-@media (min-width: 1200px) {
-    .container{
-        max-width: 800px;
-    }
+@media (min-width: 768px) {
+  #main-container {
+    max-width: 800px;
+  }
 }
+
+
 
 body {
   --color-primary-1: #f2f2f2;
@@ -20,6 +22,69 @@ body {
   background-color: var(--color-primary-1);
   font-family: 'Roboto';
   font-size: var(--font-normal);
+}
+
+@media (max-width: 550px) {
+
+  body {
+    --font-xlarge: 16px;
+    --font-large: 14px;
+    --font-normal: 12px;
+    --font-small: 10px;
+    --font-xsmall: 8px;
+  }
+
+  #internal-links,
+  #external-links {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  #internal-links > li > a {
+    margin: 0px;
+    padding: 0px;
+    height: auto;
+  }
+
+  #external-links > li > a {
+    margin: 0px;
+    padding: 0px;
+    height: auto;
+  }
+
+  #internal-links > li {
+    display: inline-block;
+    padding: 5px 5px 0px 0px;
+  }
+
+  #external-links > li {
+    display: inline-block;
+    padding: 5px 0px 0px 5px;
+  }
+
+  a.navbar-brand {
+    margin: 0px;
+    padding: 0px;
+    height: auto;
+  }
+
+  #main-container .navbar-default {
+    padding: 15px;
+  }
+
+  #main-container > #posts-container {
+    margin-top: 90px;
+  }
+}
+
+@media (max-width: 240px) {
+  ul#external-links {
+    float: left;
+  }
+
+  #main-container > #posts-container {
+    margin-top: 115px;
+  }
 }
 
 h1 {
@@ -42,18 +107,14 @@ h5 {
   font-size: var(--font-xsmall);
 }
 
-#main-container {
-}
-
 /** NAVIGATION **/
 
 .navbar-default {
-  border-radius: 0px;
-  padding: 5px 10px 5px 10px;
   border: none;
   background-color: var(--color-secondary-1);
   box-shadow: 0px 4px 4px var(--color-shadow);
   color: var(--color-text-2);
+  margin: 0px;
 }
 
 .navbar-header > .navbar-brand,
@@ -73,7 +134,6 @@ h5 {
 }
 
 .navbar-default .navbar-nav > li > a:last-child{
-  padding-right: 0px;
 }
 
 #internal-links {
@@ -87,7 +147,7 @@ h5 {
 /** BLOG POSTS **/
 
 #posts-container {
-  margin-top: 85px;
+  margin-top: 75px;
 }
 
 .post {
