@@ -46,10 +46,10 @@ flask/bin/pip install flask-markdown
 2. Setup DB...
 3. Download Custom Bootstrap
   * Modifications:
-    **@screen-xs = 550px
-    **@grid-float-breakpoint = @screen-xs
-  *Github: https://gist.github.com/3328c139f430fa213d101806841b8c50
-  *Bootstrap Customization Page: https://getbootstrap.com/customize/?id=3328c139f430fa213d101806841b8c50
+    ** @screen-xs = 550px
+    ** @grid-float-breakpoint = @screen-xs
+  * Github: https://gist.github.com/3328c139f430fa213d101806841b8c50
+  * Bootstrap Customization Page: https://getbootstrap.com/customize/?id=3328c139f430fa213d101806841b8c50
 4. Unzip Bootstrap download into app/static
 
 ###Thank you for your interest, I welcome any and all feedback or advice.
