@@ -30,26 +30,22 @@ thoughts; persoal, and professional.
 * Flask-Markdown
 * Bootstrap 3
 
-##SETUP (LINUX):
+##CUSTOM BOOTSTRAP
+* Modifications:
+  * @screen-xs = 550px
+  * @grid-float-breakpoint = @screen-xs
+* Github: https://gist.github.com/3328c139f430fa213d101806841b8c50
+* Bootstrap Customization Page: https://getbootstrap.com/customize/?id=3328c139f430fa213d101806841b8c50
 
-Setup is still a work in progress:
+##SETUP (UBUNTU):
+Setup is still a work in progress, but this will get the project going for now:
 
-1. Install flask virtual environment and dependencies.
 ```
-python3 -m venv flask
-flask/bin/pip install flask
-flask/bin/pip install flask-sqlalchemy
-flask/bin/pip install flask-admin
-flask/bin/pip install flask-markdown
+sudo apt-get install python-virtualenv
+virtualenv flask
+. flask/bin/activate
+pip install -r requirements.txt
 ./run.py
 ```
-2. Setup DB...
-3. Download Custom Bootstrap
-  * Modifications:
-    * @screen-xs = 550px
-    * @grid-float-breakpoint = @screen-xs
-  * Github: https://gist.github.com/3328c139f430fa213d101806841b8c50
-  * Bootstrap Customization Page: https://getbootstrap.com/customize/?id=3328c139f430fa213d101806841b8c50
-4. Unzip Bootstrap download into app/static
 
 ###Thank you for your interest, I welcome any and all feedback or advice.
