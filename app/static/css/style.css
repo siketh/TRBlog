@@ -200,6 +200,10 @@ h5 {
   margin-top: 25px;
 }
 
+.post-info a:hover {
+  color: var(--color-text-1);
+}
+
 .post-date span {
   float: left;
   font-weight: lighter;
@@ -207,19 +211,19 @@ h5 {
   color: var(--color-text-1);
 }
 
-.post-repo a {
-  float: right;
-  font-weight: bold;
-  font-size: var(--font-large);
-  color: var(--color-text-1);
-}
-
-.show-comments-button {
-  display: none;
+.post-info-button,
+.repo-button a {
   float: right;
   margin-left: 10px;
   color: var(--color-text-1);
   font-size: var(--font-large);
+  cursor: pointer;
+}
+
+#comments-button,
+#tags-button,
+.repo-button {
+  display: none;
 }
 
 .post-comments {
@@ -227,6 +231,27 @@ h5 {
   padding-top: 25px;
   border-top: solid var(--color-separator) 2px;
   display: none;
+}
+
+.post-tags {
+  display: none;
+  background-color: var(--color-primary-2);
+  padding: 10px 25px;
+  box-shadow: 0px 4px 4px var(--color-shadow);
+  margin-bottom: 25px;
+}
+
+.post-tags h3 {
+  margin: 0px;
+  padding: 0px 0px 10px 0px;
+}
+
+.tag {
+  float: center;
+  font-weight: lighter;
+  font-size: var(--font-small);
+  color: var(--color-text-1);
+  padding-right: 10px;
 }
 
 /** FOOTER **/
