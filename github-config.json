@@ -1,6 +1,3 @@
 {
-	"client_id": "7b3cc7979863d9a318e2",
-	"client_secret": "bddf12d5daea703b4ff0f34913bb82bf21a6729c",
-	"redirect_uri": "http://localhost:5000/blog",
-	"callback_url": "http://localhost:5000/blog"
+	"access_token": "f2cc30d68101033eaafc"
 }
