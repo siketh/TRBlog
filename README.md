@@ -30,7 +30,7 @@ thoughts; persoal, and professional.
 * Flask-Markdown
 * Bootstrap 3
 
-##CUSTOM BOOTSTRAP
+##CUSTOM BOOTSTRAP:
 * Modifications:
   * @screen-xs = 550px
   * @grid-float-breakpoint = @screen-xs
@@ -41,7 +41,8 @@ thoughts; persoal, and professional.
 Setup is still a work in progress, but this will get the project going for now:
 
 ```
-sudo apt-get install python-virtualenv
+git clone https://github.com/siketh/trevorroman-dot-com.git
+cd trevorroman-dot-com
 virtualenv flask
 . flask/bin/activate
 pip install -r requirements.txt

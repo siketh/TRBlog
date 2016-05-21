@@ -16,3 +16,4 @@ WTF_CSRF_ENABLED = True
 
 # Needed when CSRF is enabled
 SECRET_KEY = 'you-will-never-guess'
+

@@ -1,17 +1,46 @@
-$(window).load(function() {
+
+// FUNCTIONS ---------------------------------------------------------
+
+function set_navbar_padding() {
+	if (window.innerWidth > 550) {
+		var padding = $('#main-container').css('margin-right');
+
+		$('.navbar-default').css('padding-left', padding);
+		$('.navbar-default').css('padding-right', padding);
+	}
+	else {
+		$('.navbar-default').css('padding-left', 15);
+		$('.navbar-default').css('padding-right', 15);
+	}
+}
+
+function show_body() {
 	var current_url = window.location.href
 	
 	if (current_url.indexOf("/blog/post/") != -1) { 
 		$('.post-body').show();
 		$('#tags-button').show();
 		$('.repo-button').show();
-		//$('#comments-button').show();
 	}
+}
+
+// EVENTS ------------------------------------------------------------
+
+$(document).ready(function() {
+	set_navbar_padding();
+});
+
+$(window).resize(function() {
+	set_navbar_padding();
+});
+
+$(window).load(function() {
+	show_body();
 
 	$('#tags-button').click(function(e) {
 		var postTags = $('.post-tags');
 		
-		if(postTags.css('display') == 'none') {
+		if (postTags.css('display') == 'none') {
 			postTags.show();
 		}
 		else {
@@ -21,15 +50,5 @@ $(window).load(function() {
 		e.preventDefault();
 	});
 
-	/*
-	$('#comments-button').click(function() {
-		if($('.post-comments').css('display') == 'none') {
-			$('.post-comments').show();
-			$('.post-comments').css('height', 'auto');
-		}
-		else {
-			$('.post-comments').hide();
-		}
-	});
-	*/
+	set_navbar_padding();
 });
