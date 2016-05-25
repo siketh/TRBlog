@@ -2,6 +2,8 @@ from flask import render_template, redirect, url_for
 from app import app, models
 from datetime import date
 from config import POSTS_PER_PAGE
+import logging
+from logging.handlers import RotatingFileHandler
 
 @app.route('/')
 @app.route('/index')
@@ -13,7 +15,7 @@ def index():
 @app.route('/blog/post/<int:post_id>')
 def blog(page_index=1, post_id=None):
 	year = date.today().year
-
+	
 	if post_id is not None:
 		posts = models.Post.query.filter_by(id=post_id) \
 			.paginate(page_index, POSTS_PER_PAGE, False)
@@ -57,6 +59,11 @@ def tags(page_index=1, tag_name=None, post_id=None):
 	if post_id is not None:
 		posts = models.Post.query.filter_by(id=post_id) \
 			.paginate(page_index, POSTS_PER_PAGE, False)
+	
+	elif tag_name is None:
+		tags = models.Tag.query.all()
+
+		return render_template('tags.html', tags=tags, year=year)
 	
 	else: 
 		posts = models.Post.query \

@@ -3,7 +3,7 @@
 
 function set_navbar_padding() {
 	if (window.innerWidth > 550) {
-		var padding = $('#main-container').css('margin-right');
+		var padding = parseInt($('#main-container').css('margin-right'));
 
 		$('.navbar-default').css('padding-left', padding);
 		$('.navbar-default').css('padding-right', padding);
