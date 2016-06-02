@@ -40,7 +40,7 @@ class Post(db.Model):
         self.tags = tags
 
     def __repr__(self):
-        return '<Post Title %r>' % (self.title)
+        return self.title
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -66,7 +66,7 @@ class User(db.Model):
         self.posts = posts
 
     def __repr__(self):
-        return '<User Name %r>' % (self.full_name)
+        return self.full_name
 
 class Tag(db.Model):
     __tablename__ = 'tag'
@@ -83,4 +83,4 @@ class Tag(db.Model):
         self.name = name
 
     def __repr__(self):
-        return '<Tag Name %r>' % (self.name)
+        return self.name

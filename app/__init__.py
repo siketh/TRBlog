@@ -25,6 +25,10 @@ Markdown(app)
 
 from app import views, models
 
-admin.add_view(ModelView(models.Post, db.session))
+class PostView(ModelView):
+	column_exclude_list = ['body', 'abstract']
+	column_editable_list = ['title', 'updated', 'repo_url']
+
+admin.add_view(PostView(models.Post, db.session))
 admin.add_view(ModelView(models.User, db.session))
 admin.add_view(ModelView(models.Tag, db.session))

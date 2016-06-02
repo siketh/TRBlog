@@ -1,14 +1,15 @@
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, request
 from app import app, models
 from datetime import date
 from config import POSTS_PER_PAGE
-import logging
-from logging.handlers import RotatingFileHandler
+from urlparse import urljoin
+from werkzeug.contrib.atom import AtomFeed
 
-@app.route('/')
+
+@app.route('/home')
 @app.route('/index')
 def index():
-	return redirect(url_for('blog'))
+	return redirect(url_for('home'))
 
 @app.route('/blog')
 @app.route('/blog/<int:page_index>')
@@ -27,19 +28,17 @@ def blog(page_index=1, post_id=None):
 
 	return render_template('post.html', page='blog', posts=posts, year=year)
 
-@app.route('/about')
-@app.route('/about/<int:page_index>')
-def about(page_index=1):
+@app.route('/')
+def home(page_index=1):
 	posts = models.Post.query \
 		.filter(models.Post.tags.any(models.Tag.name.in_(['about']))) \
 		.paginate(page_index, POSTS_PER_PAGE, False)
 
 	year = date.today().year
 
-	return render_template('post.html', page='about', posts=posts, year=year)
+	return render_template('post.html', page='home', posts=posts, year=year)
 
 @app.route('/contact')
-@app.route('/contact/<int:page_index>')
 def contact(page_index=1):
 	posts = models.Post.query \
 		.filter(models.Post.tags.any(models.Tag.name.in_(['contact']))) \
@@ -52,7 +51,6 @@ def contact(page_index=1):
 @app.route('/tags')
 @app.route('/tags/<tag_name>')
 @app.route('/tags/<tag_name>/<int:page_index>')
-@app.route('/tags/<tag_name>/post/<int:post_id>')
 def tags(page_index=1, tag_name=None, post_id=None):
 	year = date.today().year
 
@@ -72,9 +70,37 @@ def tags(page_index=1, tag_name=None, post_id=None):
 
 	return render_template('post.html', page='blog', posts=posts, year=year)
 
+@app.route('/recent')
+def recent_feed():
+	feed = AtomFeed('Recent Articles', feed_url=request.url, url=request.url_root)
+
+	posts = models.Post.query \
+		.filter(~models.Post.tags.any(models.Tag.name.in_(['about', 'contact']))) \
+		.order_by(models.Post.updated.desc()) \
+		.limit(15) \
+		.all()
+
+	base_url = 'http://localhost:5000/blog/post/'
+	counter = 1
+
+	for post in posts:
+		url = base_url + str(counter)
+		counter += 1
+
+		feed.add(post.title, unicode(post.body),
+			content_type='html', 
+			author=post.author.full_name, 
+			url=make_external(url), 
+			updated=post.updated, 
+			published=post.created)
+
+	return feed.get_response()
+
 @app.errorhandler(404)
 def page_not_found(e):
 	year = date.today().year
 
 	return render_template('404.html', posts=[], year=year), 404
 	
+def make_external(url):
+    return urljoin(request.url_root, url)
