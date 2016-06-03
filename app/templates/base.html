@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title>trevorroman.com</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
@@ -12,42 +12,46 @@
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/tr.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  
-  <body>
-    <div id="main-container" class="container">
-      <div id="navbar-container">
+</head>
+
+<body>
+<div id="main-container" class="container">
+    <div id="navbar-container">
         <nav class="navbar navbar-default navbar-fixed-top">
-          <div>
-            <div class="navbar-header">
-              <a href="/" class="navbar-brand">Trevor Roman</a>
+            <div>
+                <div class="navbar-header">
+                    <a href="/" class="navbar-brand">Trevor Roman</a>
+                </div>
+
+                <ul id="internal-links" class="nav navbar-nav">
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+
+                <ul id="external-links" class="nav navbar-nav">
+                    <li><a title="Search my Posts" href="/tags"><i class="fa fa-search"></i></a>
+                    <li>
+                    <li><a title="View my LinkedIn" href="https://www.linkedin.com/in/trevorroman" target="_blank"><i
+                            class="fa fa-linkedin"></i></a></li>
+                    <li><a title="View my GitHub" href="https://github.com/siketh" target="_blank"><i
+                            class="fa fa-github"></i></a></li>
+                    <li><a title="View my Resume" href="static/documents/Resume.pdf" target="_blank"><i
+                            class="fa fa-file-text"></i></a></li>
+                </ul>
+                </ul>
             </div>
-
-            <ul id="internal-links" class="nav navbar-nav">
-              <li><a href="/blog">Blog</a></li>
-              <li><a href="/contact">Contact</a></li>
-            </ul>
-
-            <ul id="external-links" class="nav navbar-nav">
-              <li><a title="Search my Posts" href="/tags"><i class="fa fa-search"></i></a><li>
-              <li><a title="View my LinkedIn" href="https://www.linkedin.com/in/trevorroman" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-              <li><a title="View my GitHub" href="https://github.com/siketh" target="_blank"><i class="fa fa-github"></i></a></li>
-              <li><a title="View my Resume" href="static/documents/Resume.pdf" target="_blank"><i class="fa fa-file-text"></i></a></li>
-            </ul>
-            </ul>
-          </div>
         </nav>
-      </div>
-    
-      <div id="posts-container">
-      {% block content %}{% endblock %}
-      </div>
-      
-      <div id="footer-container">
-        <div class="footer">
-          <span>2015 - {{ year }}</span>
-        </div>
-      </div>
     </div>
-  </body>
+
+    <div id="posts-container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <div id="footer-container">
+        <div class="footer">
+            <span>2015 - {{ year }}</span>
+        </div>
+    </div>
+</div>
+</body>
 </html>

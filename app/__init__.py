@@ -1,10 +1,8 @@
-# This scrip creates an application object of class Flask,
+# This script creates an application object of class Flask,
 # then imports the views module
 
-import os
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
-from config import basedir, SQLALCHEMY_DATABASE_URI
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flaskext.markdown import Markdown
@@ -25,9 +23,11 @@ Markdown(app)
 
 from app import views, models
 
+
 class PostView(ModelView):
-	column_exclude_list = ['body', 'abstract']
-	column_editable_list = ['title', 'updated', 'repo_url']
+    column_exclude_list = ['body', 'abstract']
+    column_editable_list = ['title', 'updated', 'repo_url']
+
 
 admin.add_view(PostView(models.Post, db.session))
 admin.add_view(ModelView(models.User, db.session))

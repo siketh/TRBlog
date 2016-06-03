@@ -1,20 +1,21 @@
-from app import db
-from sqlalchemy.orm import relationship
 from datetime import datetime
 
+from app import db
+from sqlalchemy.orm import relationship
 
 post_tag_table = db.Table('post_tag_table',
-    db.Column('post_id', db.Integer, db.ForeignKey('post.id')),
-    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'))
-)
+                          db.Column('post_id', db.Integer, db.ForeignKey('post.id')),
+                          db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'))
+                          )
 
 post_user_table = db.Table('post_user_table',
-    db.Column('post_id', db.Integer, db.ForeignKey('post.id')),
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id')))
+                           db.Column('post_id', db.Integer, db.ForeignKey('post.id')),
+                           db.Column('user_id', db.Integer, db.ForeignKey('user.id')))
+
 
 class Post(db.Model):
     __tablename__ = 'post'
-    
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     abstract = db.Column(db.String(1000))
@@ -42,6 +43,7 @@ class Post(db.Model):
     def __repr__(self):
         return self.title
 
+
 class User(db.Model):
     __tablename__ = 'user'
 
@@ -51,10 +53,10 @@ class User(db.Model):
     full_name = db.Column(db.String(64), index=True, unique=True)
     nickname = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
-    
+
     posts = relationship(
-        'Post', 
-        backref='author', 
+        'Post',
+        backref='author',
         lazy='dynamic')
 
     def __init__(self, first_name="", last_name="", full_name="", nickname="", email="", posts=[]):
@@ -68,9 +70,10 @@ class User(db.Model):
     def __repr__(self):
         return self.full_name
 
+
 class Tag(db.Model):
     __tablename__ = 'tag'
-    
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=True)
 

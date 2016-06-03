@@ -1,21 +1,20 @@
-
 {% extends "base.html" %}
 {% block content %}
 
-<div class="tags">
-	<div class="tags-title">
-		<p>Search By Tag</p>
-	</div>
+    <div class="tags">
+        <div class="tags-title">
+            <p>Search By Tag</p>
+        </div>
 
-	<div class="tags-list">
-		<div class="container-fluid">
-			{% for tag in tags %}
-			<div class="col-xs-6 col-sm-3">
-				<a class="tag" href="{{ url_for('tags', tag_name=tag.name) }}">{{tag.name}}</a>
-			</div>
-			{% endfor %}
-		</div>
-	</div>
-</div>
+        <div class="tags-list">
+            <div class="container-fluid">
+                {% for tag in tags %}
+                    <div class="col-xs-6 col-sm-3">
+                        <a class="tag" href="{{ url_for('tags', tag_name=tag.name) }}">{{ tag.name }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
