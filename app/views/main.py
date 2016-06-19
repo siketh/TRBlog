@@ -1,5 +1,5 @@
 from datetime import date
-from urlparse import urljoin
+from urllib.parse import urljoin
 
 from app import app, models
 from config import POSTS_PER_PAGE
@@ -64,9 +64,9 @@ def tags(page_index=1, tag_name=None, post_id=None):
             .paginate(page_index, POSTS_PER_PAGE, False)
 
     elif tag_name is None:
-        tags = models.Tag.query.all()
+        all_tags = models.Tag.query.all()
 
-        return render_template('tags.html', tags=tags, year=year)
+        return render_template('tags.html', tags=all_tags, year=year)
 
     else:
         posts = models.Post.query \
@@ -93,7 +93,7 @@ def recent_feed():
         url = base_url + str(counter)
         counter += 1
 
-        feed.add(post.title, unicode(post.body),
+        feed.add(post.title, post.body,
                  content_type='html',
                  author=post.author.full_name,
                  url=make_external(url),

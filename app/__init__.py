@@ -1,10 +1,7 @@
-# This script creates an application object of class Flask,
-# then imports the views module
-
 from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
+from flask_sqlalchemy import SQLAlchemy
 from flaskext.markdown import Markdown
 
 # Initialize flask application
@@ -16,12 +13,14 @@ app.config.from_object('config')
 # Initialize database
 db = SQLAlchemy(app)
 
-# Create empty admin interface
-admin = Admin(app, name='trevorroman.com', template_mode='bootstrap3')
-
+# Initialize markdown
 Markdown(app)
 
-from app import views, models
+from app.views import main
+from app import models
+
+# Create empty admin interface
+admin = Admin(app, name='trevorroman.com', template_mode='bootstrap3')
 
 
 class PostView(ModelView):
