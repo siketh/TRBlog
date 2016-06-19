@@ -16,7 +16,7 @@ db = SQLAlchemy(app)
 # Initialize markdown
 Markdown(app)
 
-from app.views import main
+from app.views import main, errors, rss
 from app import models
 
 # Create empty admin interface

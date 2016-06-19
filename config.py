@@ -8,6 +8,12 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 CSRF_ENABLED = True
 SECRET_KEY = 'you-will-never-guess'
 
+# prod
+#BASE_URL = 'http://trevorroman.com'
+
+# dev
+BASE_URL = 'http://localhost:5000'
+
 # pagination
 POSTS_PER_PAGE = 5
 
