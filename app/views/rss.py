@@ -3,6 +3,7 @@ from urllib.parse import urljoin
 from app import app, models
 from config import BASE_URL
 from flask import request
+from flaskext.markdown import md
 from werkzeug.contrib.atom import AtomFeed
 
 
@@ -23,7 +24,7 @@ def recent_feed():
         url = base_url + str(counter)
         counter += 1
 
-        feed.add(post.title, post.body,
+        feed.add(post.title, md.markdown(post.body),
                  content_type='html',
                  author=post.author.full_name,
                  url=make_external(url),
