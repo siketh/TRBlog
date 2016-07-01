@@ -1,9 +1,7 @@
 #!flask/bin/python
 
-# Starts the web development server
-
-# Import the app 
 from app import app
+from config import DEBUG_MODE
 
-# Invoke its run method
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=DEBUG_MODE)

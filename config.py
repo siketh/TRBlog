@@ -8,7 +8,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 CSRF_ENABLED = True
 SECRET_KEY = 'temp-secret-key'
 DEV_MODE = True
-
+DEBUG_MODE = False
 # prod
 #BASE_URL = 'http://trevorroman.com'
 
