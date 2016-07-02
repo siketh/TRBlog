@@ -1,82 +1,79 @@
 {% extends "base.html" %}
 {% block content %}
 
-    {% if posts.items %}
-        {% for post in posts.items %}
-            <div id="post-{{ loop.index }}" class="post">
-                <div id="post-title-{{ loop.index }}" class="post-title">
-                    {% if post.title and posts.items|length == 1 %}
-                        <a href="{{ url_for(page) }}"><p>{{ post.title }}</p></a>
-                    {% elif post.title and posts.items|length > 1 %}
-                        <a href="{{ url_for(page, post_id=post.id) }}"><p>{{ post.title }}</p></a>
-                    {% else %}
-                        <p>Error: No Title</p>
-                    {% endif %}
-                </div>
-
-                <div id="post-abstract-{{ loop.index }}" class="post-abstract">
-                    {% if post.abstract %}
-                        <p>{{ post.abstract }}</p>
-                    {% else %}
-                        <p>Error: No Abstract</p>
-                    {% endif %}
-                </div>
-
-                <div id="post-body-{{ loop.index }}" class="post-body">
-                    {% if post.body %}
-                        {{ post.body|markdown }}
-                    {% else %}
-                        <p>Error: No content is available, please report this to the site admin: trevor@trevorroman.com</p>
-                    {% endif %}
-                </div>
-
-                <div id="post-info-{{ loop.index }}" class="post-info">
-                    <div id="post-date-{{ loop.index }}" class="post-date">
-                        {% if post.updated %}
-                            <span>{{ post.updated.strftime("%B %d, %Y") }}</span>
-                        {% else %}
-                            <p>Error: No Date</p>
-                        {% endif %}
-                    </div>
-
-                    <div id="repo-button-{{ loop.index }}" class="repo-button">
-                        {% if post.repo_url %}
-                            <a title="View Code Repository" href="{{ post.repo_url }}" target="_blank"><i
-                        {% endif %}
-                    </div>
-
-                    <a id="tags-button" class="post-info-button" title="View Tags"><i class="fa fa-tags"></i></a>
-
-                    <a id="comments-button" class="post-info-button" title="View Comments"><i class="fa fa-comments-o"></i></a>
-                </div>
-
-                <div id="post-comments-{{ loop.index }}" class="post-comments">
-
-                </div>
+    {% for post in posts.items %}
+        <div id="post-{{ loop.index }}" class="post">
+            <div id="post-title-{{ loop.index }}" class="post-title">
+                {% if post.title %}
+                    <a href="{{ url_for(page, post_id=post.id) }}"><p>{{ post.title }}</p></a>
+                {% else %}
+                    <p>Error: No Title</p>
+                {% endif %}
             </div>
 
-            <div id="post-tags-{{ loop.index }}" class="post-tags">
-                <span>Tags:</span>
-                {% for tag in post.tags %}
-                    <a id="post-tag-{{ loop.index }}" class="post-tag"
-                       href="{{ url_for('tags', tag_name=tag.name) }}">{{ tag.name }}</a>
-                {% endfor %}
+            <div id="post-abstract-{{ loop.index }}" class="post-abstract">
+                {% if post.abstract %}
+                    <p>{{ post.abstract }}</p>
+                {% else %}
+                    <p>Error: No Abstract</p>
+                {% endif %}
             </div>
-        {% endfor %}
 
-        {% if posts.has_prev or posts.has_next %}
-            <div class="post-navigate">
-                <div class="container-fluid">
-                    {% if posts.has_prev %}
-                        <a class="newer-posts-button" href="{{ url_for(page, page_index=posts.prev_num) }}">Newer</i></a>
-                    {% endif %}
+            <div id="post-body-{{ loop.index }}" class="post-body">
+                {% if post.body %}
+                    {{ post.body|markdown }}
+                {% else %}
+                    <p>Error: No content is available, please report this to the site admin: trevor@trevorroman.com</p>
+                {% endif %}
+            </div>
 
-                    {% if posts.has_next %}
-                        <a class="older-posts-button" href="{{ url_for(page, page_index=posts.next_num) }}">Older</a>
+            <div id="post-info-{{ loop.index }}" class="post-info">
+                <div id="post-date-{{ loop.index }}" class="post-date">
+                    {% if post.updated %}
+                        <span>{{ post.updated.strftime("%B %d, %Y") }}</span>
+                    {% else %}
+                        <p>Error: No Date</p>
                     {% endif %}
                 </div>
+
+                <div id="repo-button-{{ loop.index }}" class="repo-button">
+                    {% if post.repo_url %}
+                        <a title="View Code Repository" href="{{ post.repo_url }}" target="_blank"><i
+                                class="fa fa-code-fork"></i></a>
+                    {% endif %}
+                </div>
+
+                <a id="tags-button" class="post-info-button" title="View Tags"><i class="fa fa-tags"></i></a>
+
+                <a id="comments-button" class="post-info-button" title="View Comments"><i class="fa fa-comments-o"></i></a>
             </div>
-        {% endif %}
+
+            <div id="post-comments-{{ loop.index }}" class="post-comments">
+
+            </div>
+        </div>
+
+        <div id="post-tags-{{ loop.index }}" class="post-tags">
+            <span>Tags:</span>
+            {% for tag in post.tags %}
+                <a id="post-tag-{{ loop.index }}" class="post-tag"
+                   href="{{ url_for('tags', tag_name=tag.name) }}">{{ tag.name }}</a>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    {% if posts.has_prev or posts.has_next %}
+        <div class="post-navigate">
+            <div class="container-fluid">
+                {% if posts.has_prev %}
+                    <a class="newer-posts-button" href="{{ url_for(page, page_index=posts.prev_num) }}">Newer</i></a>
+                {% endif %}
+
+                {% if posts.has_next %}
+                    <a class="older-posts-button" href="{{ url_for(page, page_index=posts.next_num) }}">Older</a>
+                {% endif %}
+            </div>
+        </div>
     {% endif %}
 
 {% endblock %}

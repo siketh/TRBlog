@@ -15,19 +15,12 @@ function set_navbar_padding() {
 }
 
 function show_body() {
-	var current_url = window.location.href;
-    var current_host = window.location.hostname;
-    var single_post_path = "/blog/post/";
-    var local = 'localhost';
-    var prod = 'www.trevorroman.com';
-
-	if (current_url.indexOf(single_post_path) != -1) {
+	var current_url = window.location.href
+	
+	if (current_url.indexOf("/blog/post/") != -1) { 
 		$('.post-body').show();
 		$('#tags-button').show();
 		$('.repo-button').show();
-	}
-    else if (current_host.indexOf(local) != -1 || current_host.indexOf(prod) != -1) {
-		$('.post-body').show();
 	}
 }
 
