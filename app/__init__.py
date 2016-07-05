@@ -18,6 +18,7 @@ Markdown(app)
 from app.views import main, errors, rss
 from app import models
 
+# If this is not production, create the admin view
 if DEV_MODE:
     from flask_admin import Admin
     from flask_admin.contrib.sqla import ModelView
@@ -28,12 +29,12 @@ if DEV_MODE:
         column_editable_list = ['title', 'updated', 'repo_url']
 
 
-    # Create empty admin interface
     admin = Admin(app, name='trevorroman.com', template_mode='bootstrap3')
     admin.add_view(PostView(models.Post, db.session))
     admin.add_view(ModelView(models.User, db.session))
     admin.add_view(ModelView(models.Tag, db.session))
 
+# If logging is enabled, create the logger
 if LOGGING_ENABLED:
     import logging
     from logging.handlers import RotatingFileHandler
@@ -43,4 +44,3 @@ if LOGGING_ENABLED:
     app.logger.setLevel(logging.DEBUG)
     file_handler.setLevel(logging.DEBUG)
     app.logger.addHandler(file_handler)
-
