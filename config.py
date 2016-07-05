@@ -12,7 +12,7 @@ DEBUG_MODE = True
 LOGGING_ENABLED=True
 
 # prod
-#BASE_URL = 'http://trevorroman.com'
+# BASE_URL = 'http://trevorroman.com'
 
 # dev
 BASE_URL = 'http://localhost:5000'
@@ -23,3 +23,4 @@ POSTS_PER_PAGE = 5
 # database
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+SQLALCHEMY_TRACK_MODIFICATIONS = True
