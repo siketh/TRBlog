@@ -26,51 +26,41 @@ def blog(page_index=1, post_id=None):
     posts = None
 
     # If the route is supplied a post_id, only query the database for a post with that id
-    if post_id is not None:
-        log.debug("Querying for blog post with id: " + str(post_id))
-        posts = models.Post.query.filter_by(id=post_id) \
-            .paginate(page_index, POSTS_PER_PAGE, False)
+    if post_id is not None and page_index is not None:
+        posts = query_by_id(post_id, page_index)
 
-    # Otherwise query the database for all blog posts, except the one tagged as 'home'
+    # Otherwise query the database for all blog posts needed at this page index
     else:
-        log.debug("Querying for all blog posts")
-        posts = models.Post.query \
-            .filter(~models.Post.tags.any(models.Tag.name.in_(['home']))) \
-            .order_by(models.Post.updated.desc()) \
-            .paginate(page_index, POSTS_PER_PAGE, False)
+        posts = query_for_posts(page_index)
 
-    # If the query isn't valid, trigger an internal server error
-    if not valid_query(results=posts.items):
-        return errors.error_500()
+    # If no posts returned, trigger a 404
+    if posts is None:
+        return errors.error_404()
 
     # Otherwise render the page requested
     else:
-        log.debug("Returned [" + str(len(posts.items)) + "] posts")
         log.info("Rendering /blog/" + str(page_index))
         return render_template('post.html', page='blog', posts=posts, year=year)
 
 
 @app.route('/')
 def home(page_index=1):
-    log.info("Received request for /")
+    log.info("Received request for home page")
 
+    page = 'home'
     posts = None
 
     # Only query for the post tagged as 'home'
-    log.debug("Querying for the home page post")
-    posts = models.Post.query \
-        .filter(models.Post.tags.any(models.Tag.name.in_(['home']))) \
-        .paginate(page_index, POSTS_PER_PAGE, False)
+    posts = query_by_tag('home', page_index)
 
     # If the query isn't valid, trigger an internal server error
-    if not valid_query(results=posts.items):
-        return errors.error_500()
+    if posts is None:
+        return errors.error_404()
 
     # Otherwise render the page requested
     else:
-        log.debug("Returned [" + str(len(posts.items)) + "] posts")
         log.info("Rendering /")
-        return render_template('post.html', page='home', posts=posts, year=year)
+        return render_template('post.html', page=page, posts=posts, year=year)
 
 
 @app.route('/tags')
@@ -83,46 +73,121 @@ def tags(page_index=1, tag_name=None, post_id=None):
 
     # If the route is not supplied a post_id or tag_name, query for all tags and render the tags page
     if post_id is None and tag_name is None:
-        all_tags = models.Tag.query.all()
+        all_tags = query_for_tags()
 
-        # If the query isn't valid, trigger an internal server error
-        if not valid_query(results=all_tags):
-            return errors.error_500()
+        # If no tags returned, trigger a 404
+        if all_tags is None:
+            return errors.error_404()
 
         # Otherwise render the page requested
         else:
-            log.debug("Returned [" + str(len(all_tags)) + "] posts")
             log.info("Rendering /tags")
             return render_template('tags.html', tags=all_tags, year=year)
 
     # If the route is supplied a post_id and not a tag_name, only query the database for a post with that id
     elif post_id is not None and tag_name is None:
-        posts = models.Post.query.filter_by(id=post_id) \
-            .paginate(page_index, POSTS_PER_PAGE, False)
+        posts = query_by_id(post_id, page_index)
 
     # If the route is not supplied a post_id and is supplied a tag_name, query for all tags with the tag_name
     elif post_id is None and tag_name is not None:
-        posts = models.Post.query \
-            .filter(models.Post.tags.any(models.Tag.name.in_([tag_name]))) \
-            .paginate(page_index, POSTS_PER_PAGE, False)
+        posts = query_by_tag(tag_name, page_index)
 
     # Otherwise, something unexpected happened
     else:
         return errors.error_500()
 
-    # If the query isn't valid, trigger an internal server error
-    if not valid_query(results=posts.items):
-        return errors.error_500()
+    # If no posts were returned, trigger a 404
+    if posts is None:
+        return errors.error_404()
 
     # Otherwise render the page requested
     else:
-        log.debug("Returned [" + str(len(posts.items)) + "] posts")
         log.info("Rendering /tags")
         return render_template('post.html', page='blog', posts=posts, year=year)
 
 
+def query_by_id(post_id=None, page_index=None):
+    if post_id is not None and page_index is not None:
+        log.info("Querying for post with id '%d' and page index '%d'" % (post_id, page_index))
+        results = models.Post.query.filter_by(id=post_id).paginate(page_index, POSTS_PER_PAGE, False)
+
+        if query_successful(results.items):
+            log.info("Query successful, returning %d results" % len(results.items))
+            return results
+        else:
+            log.error("Query failed, returning None")
+            return None
+
+    if post_id is None:
+        log.error("Post id was not initialized, could not query for post.")
+
+    if page_index is None:
+        log.error("Page index was not initialized, could not paginate query.")
+
+    log.error("Query failed, returning None")
+    return None
+
+
+def query_for_posts(page_index=None):
+    if page_index is not None:
+        log.info("Querying for all posts on page %d" % page_index)
+        results = models.Post.query \
+            .filter(~models.Post.tags.any(models.Tag.name.in_(['home']))) \
+            .order_by(models.Post.updated.desc()) \
+            .paginate(page_index, POSTS_PER_PAGE, False)
+
+        if query_successful(results.items):
+            log.info("Query successful, returning %d results" % len(results.items))
+            return results
+        else:
+            log.error("Query failed, returning None")
+            return None
+
+    if page_index is None:
+        log.error("Page index was not initialized, could not paginate query.")
+
+    log.error("Query failed, returning None")
+    return None
+
+
+def query_by_tag(tag_name=None, page_index=None):
+    if tag_name is not None and page_index is not None:
+        log.info("Querying for post with tag_name '%s' and page index '%d'" % (tag_name, page_index))
+        results = models.Post.query \
+            .filter(models.Post.tags.any(models.Tag.name.in_([tag_name]))) \
+            .paginate(page_index, POSTS_PER_PAGE, False)
+
+        if query_successful(results.items):
+            log.info("Query successful, returning %d results" % len(results.items))
+            return results
+        else:
+            log.error("Query failed, returning None")
+            return None
+
+    if tag_name is None:
+        log.error("Tag name was not initialized, could not query for tag.")
+
+    if page_index is None:
+        log.error("Page index was not initialized, could not paginate query.")
+
+    log.error("Query failed, returning None")
+    return None
+
+
+def query_for_tags():
+    log.info("Querying for all tags")
+    results = models.Tag.query.all()
+
+    if query_successful(results):
+        log.info("Query successful, returning %d results" % len(results))
+        return results
+    else:
+        log.error("Query failed, returning None")
+        return None
+
+
 # Validate the pagination object returned from the database query
-def valid_query(results=None):
+def query_successful(results=None):
     if results is None:
         log.error("Database query failed critically")
         return False
