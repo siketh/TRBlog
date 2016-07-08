@@ -4,9 +4,7 @@
     {% for post in posts.items %}
         <div id="post-{{ loop.index }}" class="post">
             <div id="post-title-{{ loop.index }}" class="post-title">
-                {% if post.title and posts.items|length == 1 %}
-                    <p>{{ post.title }}</p>
-                {% elif post.title %}
+                {% if post.title %}
                     <a href="{{ url_for(page, post_id=post.id) }}"><p>{{ post.title }}</p></a>
                 {% else %}
                     <p>Error: No Title</p>
