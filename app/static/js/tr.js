@@ -44,10 +44,19 @@ function listen_for_clicks() {
     });
 }
 
+function remove_homepage_anchor() {
+    var href = window.location.href;
+    if (href == window.location.protocol + "//" + window.location.host + "/") {
+        var post_title_text = $('.post-title a').contents();
+        $('.post-title a').replaceWith(post_title_text);
+    }
+}
+
 // EVENTS ------------------------------------------------------------
 
 $(document).ready(function () {
     set_navbar_padding();
+    remove_homepage_anchor();
 });
 
 $(window).resize(function () {
