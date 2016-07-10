@@ -14,30 +14,27 @@ function set_navbar_padding() {
 }
 
 function show_body() {
-    var current_url = window.location.href;
-    var dev_url = 'http://localhost:5000/';
-    var prod_url = 'http:/www.trevorroman.com/';
+    var current_path = window.location.pathname;
 
-    if (current_url.indexOf(dev_url + "blog/post/") == 0 ||
-        current_url.indexOf(prod_url + "blog/post/") == 0)  {
+    if (current_path.indexOf("/blog/post/") == 0)  {
         $('.post-body').show();
         $('#tags-button').show();
         $('.repo-button').show();
     }
-    else if (current_url == dev_url || current_url == prod_url) {
+    else if (current_path == "/") {
         $('.post-body').show();
     }
 }
 
 function listen_for_clicks() {
     $('#tags-button').click(function (e) {
-        var postTags = $('.post-tags');
+        var post_tags = $('.post-tags');
 
-        if (postTags.css('display') == 'none') {
-            postTags.show();
+        if (post_tags.css('display') == 'none') {
+            post_tags.show();
         }
         else {
-            postTags.hide();
+            post_tags.hide();
         }
 
         e.preventDefault();
@@ -46,6 +43,7 @@ function listen_for_clicks() {
 
 function remove_homepage_anchor() {
     var href = window.location.href;
+
     if (href == window.location.protocol + "//" + window.location.host + "/") {
         var post_title_text = $('.post-title a').contents();
         $('.post-title a').replaceWith(post_title_text);
