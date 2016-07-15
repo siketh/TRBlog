@@ -5,6 +5,8 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 # get configuration to use from a system environment variable
+# 'TEST' for test environment
+# 'PROD' for production environment
 environment = os.environ.get('ENV')
 
 #######################################
@@ -45,4 +47,4 @@ elif environment == 'PROD':
     DEBUG_MODE = False
     BASE_URL = 'http://www.trevorroman.com'
     POSTS_PER_PAGE = 20
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'prod.db')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')

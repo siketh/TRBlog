@@ -1,7 +1,11 @@
-from config import DEV_MODE, LOGGING_ENABLED
+from config import LOGGING_ENABLED
 from flask import Flask
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
+from flask_security import Security, SQLAlchemyUserDatastore, current_user
 from flask_sqlalchemy import SQLAlchemy
 from flaskext.markdown import Markdown
+from flask_login import LoginManager
 
 # Initialize flask application
 app = Flask(__name__)
@@ -12,27 +16,45 @@ app.config.from_object('config')
 # Initialize database
 db = SQLAlchemy(app)
 
+# Initialize login manager
+login_manager = LoginManager()
+login_manager.init_app(app)
+
 # Initialize markdown
 Markdown(app)
+
 
 from app.views import main, errors, rss
 from app import models
 
-# If this is not production, create the admin view
-if DEV_MODE:
-    from flask_admin import Admin
-    from flask_admin.contrib.sqla import ModelView
+# Initialize flask-security
+user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
+user_datastore.find_or_create_role(name='admin', description='Administrator')
+security = Security(app, user_datastore)
 
 
-    class PostView(ModelView):
-        column_exclude_list = ['body', 'abstract']
-        column_editable_list = ['title', 'updated', 'repo_url']
+class PostView(ModelView):
+    column_exclude_list = ['body', 'abstract']
+    column_editable_list = ['title', 'updated', 'repo_url']
+
+    def is_accessible(self):
+        return current_user.has_role('admin')
 
 
-    admin = Admin(app, name='trevorroman.com', template_mode='bootstrap3')
-    admin.add_view(PostView(models.Post, db.session))
-    admin.add_view(ModelView(models.User, db.session))
-    admin.add_view(ModelView(models.Tag, db.session))
+class UserView(ModelView):
+    def is_accessible(self):
+        return current_user.has_role('admin')
+
+
+class TagView(ModelView):
+    def is_accessible(self):
+        return current_user.has_role('admin')
+
+
+admin = Admin(app, name='trevorroman.com', template_mode='bootstrap3')
+admin.add_view(PostView(models.Post, db.session))
+admin.add_view(UserView(models.User, db.session))
+admin.add_view(TagView(models.Tag, db.session))
 
 # If logging is enabled, create the logger
 if LOGGING_ENABLED:

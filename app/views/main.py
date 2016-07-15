@@ -3,7 +3,8 @@ from datetime import date
 
 from app import app, models
 from config import POSTS_PER_PAGE
-from flask import render_template, redirect, url_for, abort
+from flask import render_template, redirect, url_for, abort, flash, request
+from flask_login import login_user, logout_user, login_required
 
 log = logging.getLogger(__name__)
 year = date.today().year
@@ -105,6 +106,32 @@ def tags(page_index=1, tag_name=None, post_id=None):
         return render_template('post.html', page='blog', posts=posts, year=year)
 
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        user = query_for_user(email)
+
+        if user is None:
+            return abort(401)
+        elif user.password == password:
+            login_user(user)
+            return redirect(url_for('admin.index'))
+        else:
+            return abort(401)
+    else:
+        return render_template('login.html')
+
+
+# somewhere to logout
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return render_template('logout.html')
+
+
 def query_by_id(post_id=None, page_index=None):
     if post_id is not None and page_index is not None:
         log.info("Querying for post with id '%d' and page index '%d'" % (post_id, page_index))
@@ -183,6 +210,25 @@ def query_for_tags():
     else:
         log.error("Query failed, returning None")
         return None
+
+
+def query_for_user(email=None):
+    if email is not None:
+        log.info("Querying for user with email '%s'" % email)
+        results = models.User.query.filter_by(email=email).all()
+
+        if query_successful(results):
+            log.info("Query successful, returning %d results" % len(results))
+            return results[0]
+        else:
+            log.error("Query failed, returning None")
+            return None
+
+    if email is None:
+        log.error("'email' was not initialized, could not query for User.")
+
+    log.error("Query failed, returning None")
+    return None
 
 
 # Validate the pagination object returned from the database query
