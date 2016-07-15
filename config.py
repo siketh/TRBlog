@@ -4,51 +4,45 @@ import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+# get configuration to use from a system environment variable
 environment = os.environ.get('ENV')
 
-if environment is None:
-    # environment
-    CSRF_ENABLED = True
-    SECRET_KEY = 'temp-secret-key'
-    DEV_MODE = True
-    DEBUG_MODE = True
-    LOGGING_ENABLED = True
-    TESTING = False
+#######################################
+# default configuration (development) #
+#######################################
 
-    # for RSS
-    BASE_URL = 'http://localhost:5000'
+# environmental
+CSRF_ENABLED = True
+SECRET_KEY = 'temp-secret-key'
+DEV_MODE = True
+DEBUG_MODE = True
+LOGGING_ENABLED = True
+TESTING = False
 
-    # pagination
-    POSTS_PER_PAGE = 5
+# for RSS
+BASE_URL = 'http://localhost:5000'
 
-    # database
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
-    SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
-    SQLALCHEMY_TRACK_MODIFICATIONS = True
+# pagination
+POSTS_PER_PAGE = 5
 
-elif environment == 'DEV':
-    # database
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'dev.db')
+# database
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+SQLALCHEMY_TRACK_MODIFICATIONS = True
 
-elif environment == 'TEST':
-    # environment
+#######################################
+# environment specific configurations #
+#######################################
+
+if environment == 'TEST':
     DEV_MODE = False
     DEBUG_MODE = False
     TESTING = True
-
-    # database
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'test.db')
 
 elif environment == 'PROD':
-    # environment
     DEV_MODE = False
     DEBUG_MODE = False
-
-    # for RSS
     BASE_URL = 'http://www.trevorroman.com'
-
-    # pagination
     POSTS_PER_PAGE = 20
-
-    # database
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'prod.db')
