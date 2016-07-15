@@ -18,11 +18,3 @@ def page_not_found(e):
 def internal_server_error(e):
     log.error("Request returned error 500")
     return render_template('500.html', posts=[], year=year), 500
-
-
-def error_404():
-    return render_template('404.html', posts=[], year=year), 404
-
-
-def error_500():
-    return render_template('500.html', posts=[], year=year), 500

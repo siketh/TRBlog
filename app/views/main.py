@@ -2,9 +2,8 @@ import logging
 from datetime import date
 
 from app import app, models
-from app.views import errors
 from config import POSTS_PER_PAGE
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, abort
 
 log = logging.getLogger(__name__)
 year = date.today().year
@@ -35,7 +34,7 @@ def blog(page_index=1, post_id=None):
 
     # If no posts returned, trigger a 404
     if posts is None:
-        return errors.error_404()
+        return abort(404)
 
     # Otherwise render the page requested
     else:
@@ -55,7 +54,7 @@ def home(page_index=1):
 
     # If the query isn't valid, trigger an internal server error
     if posts is None:
-        return errors.error_404()
+        return abort(404)
 
     # Otherwise render the page requested
     else:
@@ -77,7 +76,7 @@ def tags(page_index=1, tag_name=None, post_id=None):
 
         # If no tags returned, trigger a 404
         if all_tags is None:
-            return errors.error_404()
+            return abort(404)
 
         # Otherwise render the page requested
         else:
@@ -94,11 +93,11 @@ def tags(page_index=1, tag_name=None, post_id=None):
 
     # Otherwise, something unexpected happened
     else:
-        return errors.error_500()
+        return abort(404)
 
     # If no posts were returned, trigger a 404
     if posts is None:
-        return errors.error_404()
+        return abort(404)
 
     # Otherwise render the page requested
     else:
