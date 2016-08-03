@@ -18,7 +18,6 @@ CSRF_ENABLED = True
 SECRET_KEY = 'temp-secret-key'
 DEV_MODE = True
 DEBUG_MODE = True
-LOGGING_ENABLED = True
 TESTING = False
 
 # for RSS
@@ -28,7 +27,7 @@ BASE_URL = 'http://localhost:5000'
 POSTS_PER_PAGE = 5
 
 # database
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'dev.db')
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
@@ -47,4 +46,4 @@ elif environment == 'PROD':
     DEBUG_MODE = False
     BASE_URL = 'http://www.trevorroman.com'
     POSTS_PER_PAGE = 20
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'prod.db')

@@ -78,6 +78,8 @@ class User(db.Model, UserMixin):
 
 
 class Role(db.Model, RoleMixin):
+    __tablename__ = 'role'
+
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(80), unique=True)
     description = db.Column(db.String(255))
@@ -102,10 +104,7 @@ class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=True)
 
-    posts = relationship(
-        "Post",
-        secondary=post_tag_table,
-        back_populates="tags")
+    posts = relationship("Post", secondary=post_tag_table, back_populates="tags")
 
     def __init__(self, name=""):
         self.name = name
