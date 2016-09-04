@@ -17,7 +17,7 @@ def recent_feed():
 
     log.debug("Querying for all blog posts")
     posts = models.Post.query \
-        .filter(~models.Post.tags.any(models.Tag.name.in_(['about', 'contact']))) \
+        .filter(~models.Post.tags.any(models.Tag.name.in_(['home']))) \
         .order_by(models.Post.updated.desc()) \
         .limit(15) \
         .all()
@@ -33,7 +33,7 @@ def recent_feed():
         log.debug("\t\t" + post.title)
         feed.add(post.title, md.markdown(post.body),
                  content_type='html',
-                 author=post.author.full_name,
+                 author=post.author.first_name + " " + post.author.last_name,
                  url=make_external(url),
                  updated=post.updated,
                  published=post.created)

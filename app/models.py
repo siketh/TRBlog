@@ -1,8 +1,7 @@
 from datetime import datetime
 
-from flask_security import UserMixin, RoleMixin
-
 from app import db
+from flask_security import UserMixin, RoleMixin
 from sqlalchemy.orm import relationship
 
 post_tag_table = db.Table('post_tag_table',
@@ -32,7 +31,7 @@ class Post(db.Model):
 
     tags = relationship("Tag", secondary=post_tag_table, back_populates="posts")
 
-    def __init__(self, title="", abstract="", body="", repo_url="", user_id=None,  tags=[]):
+    def __init__(self, title="", abstract="", body="", repo_url="", user_id=None, tags=[]):
         self.title = title
         self.abstract = abstract
         self.body = body
@@ -57,8 +56,7 @@ class User(db.Model, UserMixin):
     confirmed_at = db.Column(db.DateTime())
     password = db.Column(db.String(255))
 
-    roles = db.relationship('Role', secondary=user_roles_table, backref=db.backref('users', lazy='dynamic'))
-
+    roles = relationship('Role', secondary=user_roles_table, backref=db.backref('users', lazy='dynamic'))
     posts = relationship('Post', backref='author', lazy='dynamic')
 
     def __init__(self, first_name="", last_name="",
