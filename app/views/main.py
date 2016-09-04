@@ -1,9 +1,8 @@
 import logging
 from datetime import date
 
-from app import app, models
-from config import POSTS_PER_PAGE
-from flask import render_template, redirect, url_for, abort, flash, request
+from app import app, models, configuration
+from flask import render_template, redirect, url_for, abort, request
 from flask_login import login_user, logout_user, login_required
 
 log = logging.getLogger(__name__)
@@ -124,7 +123,6 @@ def login():
         return render_template('login.html')
 
 
-# somewhere to logout
 @app.route("/logout")
 @login_required
 def logout():
@@ -135,7 +133,7 @@ def logout():
 def query_by_id(post_id=None, page_index=None):
     if post_id is not None and page_index is not None:
         log.info("Querying for post with id '%d' and page index '%d'" % (post_id, page_index))
-        results = models.Post.query.filter_by(id=post_id).paginate(page_index, POSTS_PER_PAGE, False)
+        results = models.Post.query.filter_by(id=post_id).paginate(page_index, configuration.POSTS_PER_PAGE, False)
 
         if query_successful(results.items):
             log.info("Query successful, returning %d results" % len(results.items))
@@ -160,7 +158,7 @@ def query_for_posts(page_index=None):
         results = models.Post.query \
             .filter(~models.Post.tags.any(models.Tag.name.in_(['home']))) \
             .order_by(models.Post.updated.desc()) \
-            .paginate(page_index, POSTS_PER_PAGE, False)
+            .paginate(page_index, configuration.POSTS_PER_PAGE, False)
 
         if query_successful(results.items):
             log.info("Query successful, returning %d results" % len(results.items))
@@ -181,7 +179,7 @@ def query_by_tag(tag_name=None, page_index=None):
         log.info("Querying for post with tag_name '%s' and page index '%d'" % (tag_name, page_index))
         results = models.Post.query \
             .filter(models.Post.tags.any(models.Tag.name.in_([tag_name]))) \
-            .paginate(page_index, POSTS_PER_PAGE, False)
+            .paginate(page_index, configuration.POSTS_PER_PAGE, False)
 
         if query_successful(results.items):
             log.info("Query successful, returning %d results" % len(results.items))

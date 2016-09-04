@@ -4,44 +4,46 @@ import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-# get configuration to use from a system environment variable
-# 'TEST' for test environment
-# 'PROD' for production environment
-environment = os.environ.get('ENV')
+CSRF_ENABLED = None
+SECRET_KEY = None
+DEV_MODE = None
+DEBUG_MODE = None
+TESTING = None
+BASE_URL = None
+POSTS_PER_PAGE = None
+SQLALCHEMY_DATABASE_URI = None
+SQLALCHEMY_MIGRATE_REPO = None
+SQLALCHEMY_TRACK_MODIFICATIONS = None
 
-#######################################
-# default configuration (development) #
-#######################################
 
-# environmental
-CSRF_ENABLED = True
-SECRET_KEY = 'temp-secret-key'
-DEV_MODE = True
-DEBUG_MODE = True
-TESTING = False
+class Config(object):
+    # environmental
+    CSRF_ENABLED = True
+    SECRET_KEY = 'temp-secret-key'
+    DEV_MODE = True
+    DEBUG_MODE = True
+    TESTING = False
 
-# for RSS
-BASE_URL = 'http://localhost:5000'
+    # for RSS
+    BASE_URL = 'http://localhost:5000'
 
-# pagination
-POSTS_PER_PAGE = 5
+    # pagination
+    POSTS_PER_PAGE = 5
 
-# database
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'dev.db')
-SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
-SQLALCHEMY_TRACK_MODIFICATIONS = True
+    # database
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'dev.db')
+    SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 
-#######################################
-# environment specific configurations #
-#######################################
 
-if environment == 'TEST':
+class TestConfig(Config):
     DEV_MODE = False
     DEBUG_MODE = False
     TESTING = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'test.db')
 
-elif environment == 'PROD':
+
+class ProdConfig(Config):
     DEV_MODE = False
     DEBUG_MODE = False
     BASE_URL = 'http://www.trevorroman.com'
