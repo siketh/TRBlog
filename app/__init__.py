@@ -33,14 +33,9 @@ class TagView(ModelView):
 
 
 def init_configuration():
-    environment = os.environ['ENV']
+    current_config = config.get_config()
 
-    if environment is 'PROD':
-        current_config = config.ProdConfig()
-        app.config.from_object(current_config)
-    else:
-        current_config = config.Config
-        app.config.from_object(current_config)
+    app.config.from_object(current_config)
 
     return current_config
 
@@ -93,7 +88,6 @@ login_manager = init_login_manager()
 markdown = init_markdown()
 logger = init_logger()
 
-# Initialize further dependencies
 from app.views import main, errors, rss
 from app import views, models
 

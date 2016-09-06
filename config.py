@@ -49,3 +49,21 @@ class ProdConfig(Config):
     BASE_URL = 'http://www.trevorroman.com'
     POSTS_PER_PAGE = 20
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'prod.db')
+
+
+def get_config():
+    environment = os.environ['ENV']
+
+    print("Current environment: " + environment)
+
+    if environment == 'PROD':
+        print("Creating production configuration")
+        current_config = ProdConfig()
+    elif environment == 'TEST':
+        print("Creating production configuration")
+        current_config = TestConfig()
+    else:
+        print("Creating development configuration")
+        current_config = Config()
+
+    return current_config
