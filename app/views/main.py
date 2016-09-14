@@ -3,7 +3,7 @@ from datetime import date
 
 from app import app, models, configuration
 from flask import render_template, redirect, url_for, abort, request
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 
 log = logging.getLogger(__name__)
 year = date.today().year
@@ -107,26 +107,52 @@ def tags(page_index=1, tag_name=None, post_id=None):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    log.info("Received request for /login")
+
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
         user = query_for_user(email)
 
+        log.info("User: [" + email + "] is attempting to log in")
+
         if user is None:
+            log.error("User: [" + email + "] does not exist in the database")
             return abort(401)
         elif user.password == password:
+            log.info("User: [" + email + "] logged in successfully")
             login_user(user)
             return redirect(url_for('admin.index'))
         else:
+            log.error("User: [" + email + "] failed to log in")
             return abort(401)
     else:
+        log.info("Rendering /login")
         return render_template('login.html')
+
+
+@app.route("/admin")
+@login_required
+def admin():
+    log.info("Received request for /admin")
+
+    if current_user.is_authenticated:
+        log.error("Rendering /admin")
+        return redirect(url_for('admin.index'))
+    else:
+        log.info("Cannot render /admin because no user is authenticated. Redirecting to /home")
+        return redirect(url_for('home'))
 
 
 @app.route("/logout")
 @login_required
 def logout():
+    log.info("Received request for /logout")
+
+    log.info("Logging out current user")
     logout_user()
+
+    log.info("Rendering /logout")
     return render_template('logout.html')
 
 
