@@ -7,26 +7,30 @@ I'm still learning what constitutes a good project setup, what to check in, what
 not live in any form other than a very basic landing page on my domain.
 
 ##GOALS:
-1. Create a minimal blog and portfolio webapp to showcase past and puture projects, and to serve as a soapbox for my own 
-thoughts; persoal, and professional.
+1. Create a minimal blog and portfolio to showcase past and future projects, and to serve as a soapbox for my own 
+thoughts; personal, and professional.
 2. Implement as much of my own code as possible.
 3. Leverage useful frameworks and modules when it makes sense.
-4. No CMS, no bloat, use and implement only what is needed and nothing more.
-5. Dig deep and learn as much as possible.
+4. No established CMS, no bloat, use and implement only what is needed and nothing more.
+5. Learn what it takes to deploy a website from front to back.
+6. Dig deep and learn as much as possible.
 
 ##PLANNED FEATURES:
-1. Minimal, elegant, and intiutive interface.
-2. Support for comments on blog posts. Commenters will log in with Google account, or possibly other services.
-3. RSS feed
-4. Full text search
-5. Articles featuring code can be forked directly from the post
-6. Simple and secure admin page
+1. Minimal, elegant, and intuitive interface. [Done, I think :)]
+2. Support for comments on blog posts. Commenters will log in with Google account, or possibly other services. [Not Done]
+3. RSS feed [Done]
+4. Full text search [Not Done]
+5. Articles featuring code can be forked directly from the post [Done]
+6. Simple and secure admin page [Done]
 
 ##DEPENDENCIES:
 * Python 3
 * Flask
 * Flask-SQLAlchemy
 * Flask-Admin
+* Flask-Security
+* Flask-Login
+* SQLAlchemy-Migrate
 * Flask-Markdown
 * Bootstrap 3
 
@@ -41,11 +45,16 @@ thoughts; persoal, and professional.
 Setup is still a work in progress, but this will get the project going for now:
 
 ```
-git clone https://github.com/siketh/trevorroman-dot-com.git
-cd trevorroman-dot-com
-virtualenv flask
+sudo apt-get install python3
+sudo apt-get install python3-pip
+sudp apt-get-install git
+
+git clone https://github.com/siketh/TRBlog.git
+cd TRBlog
+sudo python3 -m venv flask
 . flask/bin/activate
-pip install -r requirements.txt
+pip3 install -r requirements.txt
+
 ./run.py
 ```
 
