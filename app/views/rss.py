@@ -1,8 +1,7 @@
 import logging
 from urllib.parse import urljoin
 
-from app import app, models
-from config import BASE_URL
+from app import app, models, configuration
 from flask import request
 from flaskext.markdown import md
 from werkzeug.contrib.atom import AtomFeed
@@ -22,7 +21,7 @@ def recent_feed():
         .limit(15) \
         .all()
 
-    base_url = BASE_URL + '/blog/post/'
+    base_url = configuration.BASE_URL + '/blog/post/'
     counter = 1
 
     log.debug("Printing posts in RSS Feed:")
