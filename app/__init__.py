@@ -78,7 +78,7 @@ def init_admin():
     admin.add_view(UserView(models.User, db.session))
     admin.add_view(TagView(models.Tag, db.session))
 
-    return admin
+    return admin, user_datastore
 
 
 configuration = init_configuration()
@@ -90,4 +90,4 @@ logger = init_logger()
 from app.views import main, errors, rss
 from app import views, models
 
-admin = init_admin()
+admin, user_datastore = init_admin()
