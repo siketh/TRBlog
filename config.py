@@ -5,7 +5,6 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 CSRF_ENABLED = None
-SECRET_KEY = None
 DEV_MODE = None
 DEBUG_MODE = None
 TESTING = None
@@ -19,7 +18,6 @@ SQLALCHEMY_TRACK_MODIFICATIONS = None
 class Config(object):
     # environmental
     CSRF_ENABLED = True
-    SECRET_KEY = 'temp-secret-key'
     DEV_MODE = True
     DEBUG_MODE = True
     TESTING = False
