@@ -1,38 +1,56 @@
 # trevorroman.com
-###My personal website, portfolio, and exercise in learning web development.
+
+###My personal website, portfolio, and exercise in learning full-stack web development.
 
 ##DISCLAIMER:
-This project should be viewed as a bit of a playground. I have a lot to learn about Flask and web development in general.
-I'm still learning what constitutes a good project setup, what to check in, what not to check in, etc. This project is 
-not live in any form other than a very basic landing page on my domain.
+This is an informal personal project I've been working on since 2015. It is not meant to be a general purpose tool for developers to fork and contribute to (though nothing is stopping you). I do welcome any suggestions or comments. My hope is that anyone looking to learn about web development with Python and Flask will find my project interesting and maybe even useful in their own endeavors.
+
+## ABOUT:
+TRBlog is a personal blogging web application stripped down to it's most essential elements. 
+
+To me, these elements are:
+
+ - User (Admin)
+ - Posts
+ - Tags 
+ - Admin interface
+ - RSS feed
+
+My engineering philosophy is to begin with only what is absolutely necessary and work up the complexity from there. I have plans for future enhancements, but I believe the project currently has everything I require for my personal needs.
 
 ##GOALS:
-1. Create a minimal blog and portfolio to showcase past and future projects, and to serve as a soapbox for my own 
-thoughts; personal, and professional.
-2. Implement as much of my own code as possible.
-3. Leverage useful frameworks and modules when it makes sense.
-4. No established CMS, no bloat, use and implement only what is needed and nothing more.
-5. Learn what it takes to deploy a website from front to back.
-6. Dig deep and learn as much as possible.
+The following were my goals when I first set out to build this project.
 
-##PLANNED FEATURES:
-1. Minimal, elegant, and intuitive interface. [Done, I think :)]
-2. Support for comments on blog posts. Commenters will log in with Google account, or possibly other services. [Not Done]
-3. RSS feed [Done]
-4. Full text search [Not Done]
-5. Articles featuring code can be forked directly from the post [Done]
-6. Simple and secure admin page [Done]
+- Create a minimal blog and portfolio to showcase past and future projects, and to serve as a soapbox for my own thoughts; personal, and professional.
+- Implement as much of my own code as possible.
+- Leverage useful frameworks and modules when it makes sense.
+- No established CMS, no bloat, use and implement only what is needed and nothing more.
+- Learn what it takes to deploy a website from front-end to server configuration.
+- Dig deep and learn as much as possible.
+
+##CURRENT FEATURES:
+- Minimal, elegant, and intuitive interface
+- Administrative login for content management
+- Tag-based search
+- RSS feed
+- Link to repository if a post features code
+
+##FUTURE FEATURES:
+ - Comments
+ - Full text search
+ - Custom admin interface
+ - Generalize and release as a configurable minimal blogging application
 
 ##DEPENDENCIES:
-* Python 3
-* Flask
-* Flask-SQLAlchemy
-* Flask-Admin
-* Flask-Security
-* Flask-Login
-* SQLAlchemy-Migrate
-* Flask-Markdown
-* Bootstrap 3
+- Python 3
+- Flask
+- Flask-SQLAlchemy
+- Flask-Admin
+- Flask-Security
+- Flask-Login
+- SQLAlchemy-Migrate
+- Flask-Markdown
+- Bootstrap 3
 
 ##CUSTOM BOOTSTRAP:
 * Modifications:
@@ -41,13 +59,25 @@ thoughts; personal, and professional.
 * Github: https://gist.github.com/3328c139f430fa213d101806841b8c50
 * Bootstrap Customization Page: https://getbootstrap.com/customize/?id=3328c139f430fa213d101806841b8c50
 
-##SETUP (UBUNTU):
-Setup is still a work in progress, but this will get the project going for now:
+##LEARNING RESOURCES USED:
+* [Flask Documentation](http://flask.pocoo.org/docs/0.11/)
+* [Max Halford's Flask-Boilerplate](https://github.com/MaxHalford/Flask-Boilerplate)
+* [Miguel Grinberg's Flask Mega Tutorial](http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
+* [Flask-Security Documentation](https://pythonhosted.org/Flask-Security/)
+* [Flask-Admin Documentation](https://flask-admin.readthedocs.io/en/latest/)
+* [Flask-Login Documentation](https://flask-login.readthedocs.io/en/latest/)
+* [Flask-Markdown Documentation](https://pythonhosted.org/Flask-Markdown/)
+* [Digital Ocean VPS Setup Documentation](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04)
+* [Digital Ocean Flask Deployment Documentation](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)
+* [SQLAlchemy Tutorial](http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html)
 
-```
+##LOCAL SETUP:
+These are instructions for a local deployment of TRBlog on Ubuntu 16.
+
+```sh
 sudo apt-get install python3
 sudo apt-get install python3-pip
-sudp apt-get-install git
+sudp apt-get install git
 
 git clone https://github.com/siketh/TRBlog.git
 cd TRBlog
@@ -58,4 +88,6 @@ pip3 install -r requirements.txt
 ./run.py
 ```
 
-###Thank you for your interest, I welcome any and all feedback or advice.
+###Thank you for your interest in my project, I welcome any and all feedback or advice. 
+
+###If you feel that I have misappropriated anything or not given due credit, please contact me immediately at troman360@gmail.com and I will correct the issue as soon as possible.
