@@ -27,6 +27,7 @@ function show_body() {
     }
     else if (current_path == "/") {
         $('.post-body').show();
+        $('.repo-button').show();
     }
 }
 
